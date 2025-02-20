@@ -1,0 +1,172 @@
+@model IEnumerable<UserDTO>
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Paneli</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Genel stil */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            /* Yatay kaydırmayı engelle */
+        }
+
+        /* Sol Menü */
+        .sidebar {
+            height: 100vh;
+            width: 220px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            color: white;
+            padding-top: 20px;
+            transition: 0.3s;
+            overflow-y: auto;
+            /* Dikey kaydırma olabilir */
+            display: none;
+            /* Başlangıçta gizli */
+        }
+
+        /* Sol Menü Linkleri */
+        .sidebar a {
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+            font-size: 18px;
+        }
+
+        .sidebar a:hover {
+            background-color: #575d63;
+        }
+
+        /* Sağ İçerik Paneli */
+        .content-wrapper {
+            margin-left: 220px;
+            /* Sol menü genişliğine göre hizalama */
+            padding: 20px;
+            max-width: calc(100% - 220px);
+            /* Genişlik sınırlaması */
+            overflow-x: auto;
+            /* Sağ panelin taşmasını engelle */
+            display: none;
+            /* Başlangıçta gizli */
+        }
+
+        /* Admin paneli başta gizleniyor */
+        .admin-panel {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+        }
+
+        @@media(max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .content-wrapper {
+                margin-left: 200px;
+                max-width: calc(100% - 200px);
+            }
+        }
+
+        @@media(max-width: 480px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .content-wrapper {
+                margin-left: 0;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="admin-panel">
+        <div class="text-center">
+            <h1>Admin Paneli</h1>
+            <p>Hoşgeldiniz! Admin paneline başlamak için aşağıdaki butona tıklayın.</p>
+            <a href="javascript:void(0);" class="btn btn-primary btn-lg" id="startButton">Admin Paneline Başla</a>
+        </div>
+    </div>
+
+    <!-- Sol Menü (Sidebar) -->
+    <div class="sidebar">
+        <h4 class="text-center text-white">Admin Paneli</h4>
+        <a href="@Url.Action("UserList", "Admin")">Kullanıcılar</a>
+        <a href="@Url.Action("AddUser", "Admin")">Yeni Kullanıcı Ekle</a>
+        <a href="@Url.Action("Index", "Car")">Araçlar</a>
+        
+
+    </div>
+
+    <!-- Sağ Panel (Ana İçerik) -->
+    <div class="container-fluid content-wrapper" id="contentWrapper">
+        <div id="userList" style="display:none;">
+            
+        </div>
+
+        @* <div id="addUserForm" style="display:none;">
+                    <h2 class="my-4">Yeni Kullanıcı Ekle</h2>
+                    <form method="post" action="@Url.Action("AddUser", "Admin")">
+                        <div class="form-group">
+                            <label for="firstName">Ad</label>
+                            <input type="text" class="form-control" id="firstName" name="FirstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Soyad</label>
+                            <input type="text" class="form-control" id="lastName" name="LastName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Mail</label>
+                            <input type="email" class="form-control" id="email" name="Email" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Kullanıcı Ekle</button>
+                    </form>
+                </div> *@
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, ve jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Butona tıklandığında admin panelini göster
+        document.getElementById('startButton').onclick = function () {
+            document.querySelector('.admin-panel').style.display = 'none';  // Admin paneli ekranını gizle
+            document.querySelector('.sidebar').style.display = 'block';  // Sol menüyü göster
+            document.querySelector('.content-wrapper').style.display = 'block';  // İçerik panelini göster
+        };
+
+        // Sol menü öğelerine tıklanarak içerikleri değiştirme
+        document.getElementById('usersMenu').onclick = function () {
+            document.getElementById('userList').style.display = 'block';  // Kullanıcı listesi görünür
+            document.getElementById('addUserForm').style.display = 'none';  // Kullanıcı ekleme formu gizli
+        };
+
+        document.getElementById('addUserMenu').onclick = function () {
+            document.getElementById('userList').style.display = 'none';  // Kullanıcı listesi gizli
+            document.getElementById('addUserForm').style.display = 'block';  // Kullanıcı ekleme formu görünür
+        };
+    </script>
+
+</body>
+
+</html>

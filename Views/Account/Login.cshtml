@@ -1,0 +1,45 @@
+@model UserDTO
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow-lg" style="width: 400px;">
+        <h2 class="text-center mb-4">Giriş Yap</h2>
+
+        <form asp-action="Login" method="post">
+            <div class="mb-3">
+                <label for="Email" class="form-label">Email:</label>
+                <input type="email" id="Email" name="Email" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="Password" class="form-label">Şifre:</label>
+                <input type="password" id="Password" name="Password" class="form-control" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Giriş Yap</button>
+
+            <div class="mt-3 text-center">
+                <a href="/Account/Register">Hesabın yok mu? Kayıt Ol</a>
+            </div>
+        </form>
+         <!-- Hata mesajları -->
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger">
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <p>@error.ErrorMessage</p>
+                    }
+                </div>
+            }
+    </div>
+</div>
+
+
+<!-- Ana Sayfaya Git Butonu Sağ Altta Sticky -->
+<div class="position-fixed bottom-0 end-0 m-3">
+    <a href="@Url.Action("Index", "Home")" class="btn btn-danger">Ana Sayfaya Dön</a>
+</div>

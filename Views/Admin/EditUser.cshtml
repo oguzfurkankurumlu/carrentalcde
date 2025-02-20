@@ -1,0 +1,123 @@
+@model UserDTO
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kullanıcı Düzenle</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Genel Stil */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Sol Menü */
+        .sidebar {
+            height: 100vh;
+            width: 220px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            color: white;
+            padding-top: 20px;
+            transition: 0.3s;
+            overflow-y: auto;
+        }
+
+        .sidebar a {
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+            font-size: 18px;
+        }
+
+        .sidebar a:hover {
+            background-color: #575d63;
+        }
+
+        /* Sağ İçerik Paneli */
+        .content-wrapper {
+            margin-left: 220px;
+            padding: 20px;
+            max-width: calc(100% - 220px);
+            overflow-x: auto;
+        }
+
+        /* Responsive tasarım */
+        @@media(max - width: 768px) {
+                .sidebar {
+                    width: 200px;
+                }
+
+                .content-wrapper {
+                    margin-left: 200px;
+                    max-width: calc(100% - 200px);
+                }
+            }
+
+            @@media(max - width: 480px) {
+                    .sidebar {
+                        width: 100%;
+                        height: auto;
+                        position: relative;
+                    }
+
+                    .content-wrapper {
+                        margin-left: 0;
+                        max-width: 100%;
+                    }
+                }
+            </style>
+        </head>
+
+        <body>
+
+            <!-- Sol Menü (Sidebar) -->
+            <div class="sidebar">
+                <h4 class="text-center text-white">Admin Paneli</h4>
+                <a href="@Url.Action("UserList", "Admin")">Kullanıcılar</a>
+                <a href="@Url.Action("AddUser", "Admin")">Yeni Kullanıcı Ekle</a>
+                <a href="@Url.Action("Index", "Car")">Araçlar</a>
+            </div>
+
+            <!-- Sağ İçerik Paneli -->
+            <div class="container-fluid content-wrapper" style="margin-top: 30px; padding: 20px;">
+
+                <h2 class="mb-4">Kullanıcı Düzenle</h2>
+
+                <!-- Form Başlangıcı -->
+                <form asp-action="EditUser" asp-controller="Admin" method="post">
+                    <input type="hidden" asp-for="UserId" />
+
+                    <label for="FirstName">First Name</label>
+                    <input type="text" asp-for="FirstName" />
+
+                    <label for="LastName">Last Name</label>
+                    <input type="text" asp-for="LastName" />
+
+                    <label for="Email">Email</label>
+                    <input type="email" asp-for="Email" />
+
+                    <label for="City">City</label>
+                    <input type="text" asp-for="City" />
+
+                    <label for="Role">Role</label>
+                    <input type="text" asp-for="Role" />
+
+                    <button type="submit">Update</button>
+                </form>
+
+                <!-- Form Sonu -->
+
+            </div>
+
+            <!-- Bootstrap JS ve jQuery için gerekli linkler -->
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        </body>

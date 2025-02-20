@@ -1,0 +1,192 @@
+@model CarDTO
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Araç Ekle - Admin Paneli</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Genel stil */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Sol Menü */
+        .sidebar {
+            height: 100vh;
+            width: 220px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            color: white;
+            padding-top: 20px;
+            transition: 0.3s;
+            overflow-y: auto;
+        }
+
+        /* Sol Menü Linkleri */
+        .sidebar a {
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+            font-size: 18px;
+        }
+
+        .sidebar a:hover {
+            background-color: #575d63;
+        }
+
+        /* Sağ İçerik Paneli */
+        .content-wrapper {
+            margin-left: 220px;
+            padding: 20px;
+            max-width: calc(100% - 220px);
+            overflow-x: auto;
+        }
+
+        /* Responsive Tasarım */
+        @@media(max - width: 768px) {
+                .sidebar {
+                    width: 200px;
+                }
+
+                .content-wrapper {
+                    margin-left: 200px;
+                    max-width: calc(100% - 200px);
+                }
+            }
+
+            @@media(max - width: 480px) {
+                    .sidebar {
+                        width: 100%;
+                        height: auto;
+                        position: relative;
+                    }
+
+                    .content-wrapper {
+                        margin-left: 0;
+                        max-width: 100%;
+                    }
+                }
+            </style>
+        </head>
+
+        <body>
+
+            <!-- Sol Menü (Sidebar) -->
+            <div class="sidebar">
+                <h4 class="text-center text-white">Admin Paneli</h4>
+                <a href="@Url.Action("UserList", "Admin")">Kullanıcılar</a>
+                <a href="@Url.Action("AddUser", "Admin")">Yeni Kullanıcı Ekle</a>
+                <a href="@Url.Action("Index", "Car")">Araçlar</a>
+            </div>
+
+            <!-- Sağ Panel (Ana İçerik) -->
+            <div class="container-fluid content-wrapper" style="margin-top: 30px; padding: 20px; padding-right: 20px;">
+                <h2>Araç Ekle</h2>
+                <form method="post" action="@Url.Action("AddCar", "Car")">
+                    <div class="form-group">
+                        <label for="Make">Marka:</label>
+                        <select id="Make" name="Make" class="form-control" required>
+                            <option value="Toyota">Toyota</option>
+                            <option value="Honda">Honda</option>
+                            <option value="Ford">Ford</option>
+                            <option value="BMW">BMW</option>
+                            <option value="Audi">Audi</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Model">Model:</label>
+                        <input type="text" id="Model" name="Model" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Year">Yıl:</label>
+                        <input type="number" id="Year" name="Year" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PricePerDay">Fiyat:</label>
+                        <input type="number" id="PricePerDay" name="PricePerDay" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="IsAvailable">Durum:</label>
+                        <select id="IsAvailable" name="IsAvailable" class="form-control">
+                            <option value="true">Mevcut</option>
+                            <option value="false">Dolu</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Description">Açıklama</label>
+                        <textarea class="form-control" id="Description" name="Description">@Model.Description</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Color">Renk:</label>
+                        <input type="text" id="Color" name="Color" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Mileage">Kilometre:</label>
+                        <input type="number" id="Mileage" name="Mileage" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="IsAirConditioned">Klima Var mı?</label>
+                        <input type="checkbox" id="IsAirConditioned" name="IsAirConditioned" value="true"
+                            @(Model.IsAirConditioned == true ? "checked" : "")>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="IsAutomatic">Otomatik Vites?</label>
+                        <input type="checkbox" id="IsAutomatic" name="IsAutomatic" value="true" @(Model.IsAutomatic == true ? "checked" : "")>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CarType">Araç Tipi:</label>
+                        <select id="CarType" name="CarType" class="form-control" required>
+                            <option value="SUV">SUV</option>
+                            <option value="Sedan">Sedan</option>
+                            <option value="Hatchback">Hatchback</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="FuelType">Yakıt Tipi:</label>
+                        <select id="FuelType" name="FuelType" class="form-control" required>
+                            <option value="Benzin">Benzin</option>
+                            <option value="Dizel">Dizel</option>
+                            <option value="Elektrik">Elektrik</option>
+                        </select>
+                    </div>
+
+                    <!-- Resim URL Alanı -->
+                    <div class="form-group">
+                        <label for="ImageUrl">Araç Resmi URL:</label>
+                        <input type="text" id="ImageUrl" name="ImageUrl" class="form-control" required />
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Ekle</button>
+                    <a href="@Url.Action("Index", "Car")" class="btn btn-primary">Geri Dön</a>
+                </form>
+            </div>
+
+            <!-- Bootstrap JS, Popper.js, ve jQuery -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        </body>
+
+</html>
