@@ -55,11 +55,14 @@
             border-radius: 8px;
             overflow: hidden;
             margin-top: 30px;
-            font-size: 14px; /* Tabloyu biraz daha küçülttük */
+            font-size: 14px;
+            /* Tabloyu biraz daha küçülttük */
         }
 
-        .car-details-table th, .car-details-table td {
-            padding: 12px; /* Hücreleri biraz daha küçük yaptık */
+        .car-details-table th,
+        .car-details-table td {
+            padding: 12px;
+            /* Hücreleri biraz daha küçük yaptık */
             text-align: left;
             vertical-align: middle;
         }
@@ -72,7 +75,8 @@
         /* Resim Çerçevesi */
         .car-image-container {
             text-align: center;
-            max-width: 300px; /* Çerçeveyi biraz daha küçültüyoruz */
+            max-width: 300px;
+            /* Çerçeveyi biraz daha küçültüyoruz */
             overflow: hidden;
             border: 3px solid #ddd;
             border-radius: 8px;
@@ -84,104 +88,116 @@
         .car-image {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Resmi düzgün sığdırdık */
-            transform: scale(0.8); /* Resmi "zoom out" yapmak için scale kullandık */
+            object-fit: contain;
+            /* Resmi düzgün sığdırdık */
+            transform: scale(0.8);
+            /* Resmi "zoom out" yapmak için scale kullandık */
         }
 
         /* Resmin üzerine gelindiğinde büyümesini engellemek */
         .car-image-container:hover .car-image {
-            transform: scale(0.8); /* Mouse ile üzerine gelince zoom olmasın */
+            transform: scale(0.8);
+            /* Mouse ile üzerine gelince zoom olmasın */
         }
 
         /* Media Queries for responsiveness */
-        @@media (max-width: 768px) {
-            .sidebar {
-                width: 200px;
+        @@media(max - width: 768px) {
+                .sidebar {
+                    width: 200px;
+                }
+
+                .content-wrapper {
+                    margin-left: 200px;
+                    max-width: calc(100% - 200px);
+                }
+
+                .car-details-table {
+                    font-size: 12px;
+                    /* Tabloyu daha küçük yaptık */
+                }
+
+                .car-image-container {
+                    max-width: 250px;
+                    /* Çerçeve daha küçük hale geliyor */
+                }
             }
 
-            .content-wrapper {
-                margin-left: 200px;
-                max-width: calc(100% - 200px);
-            }
+            @@media(max - width: 480px) {
+                    .sidebar {
+                        width: 100%;
+                        height: auto;
+                        position: relative;
+                    }
 
-            .car-details-table {
-                font-size: 12px; /* Tabloyu daha küçük yaptık */
-            }
+                    .content-wrapper {
+                        margin-left: 0;
+                        max-width: 100%;
+                    }
 
-            .car-image-container {
-                max-width: 250px; /* Çerçeve daha küçük hale geliyor */
-            }
-        }
+                    .car-details-table {
+                        font-size: 10px;
+                        /* Tabloyu daha küçük yaptık */
+                    }
 
-        @@media (max-width: 480px) {
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-            }
+                    .car-image-container {
+                        max-width: 200px;
+                        /* Çerçeve daha küçük hale geliyor */
+                    }
+                }
+            </style>
+        </head>
 
-            .content-wrapper {
-                margin-left: 0;
-                max-width: 100%;
-            }
+        <body>
 
-            .car-details-table {
-                font-size: 10px; /* Tabloyu daha küçük yaptık */
-            }
+            <!-- Sol Menü -->
+            <div class="sidebar">
+                <h4 class="text-center text-white">Admin Paneli</h4>
+                <a href="@Url.Action("UserList", "Admin")">Kullanıcılar</a>
+                <a href="@Url.Action("AddUser", "Admin")">Yeni Kullanıcı Ekle</a>
+                <a href="@Url.Action("Index", "Car")">Araçlar</a>
+                <a href="@Url.Action("Rentals", "Admin")">Kiralama Listesi</a>
 
-            .car-image-container {
-                max-width: 200px; /* Çerçeve daha küçük hale geliyor */
-            }
-        }
-    </style>
-</head>
+            </div>
 
-<body>
-
-    <!-- Sol Menü -->
-    <div class="sidebar">
-        <h4 class="text-center text-white">Admin Paneli</h4>
-        <a href="@Url.Action("UserList", "Admin")">Kullanıcılar</a>
-        <a href="@Url.Action("AddUser", "Admin")">Yeni Kullanıcı Ekle</a>
-        <a href="@Url.Action("Index", "Car")">Araçlar</a>
-    </div>
-
-    <!-- Sağ İçerik -->
-    <div class="container-fluid content-wrapper">
-        <div class="car-details-table">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th colspan="2" class="text-center">Araç Detayları</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td rowspan="8" class="car-image-container">
-                            @if (!string.IsNullOrEmpty(Model.ImageUrl))
-                            {
-                                <img src="@Url.Content(Model.ImageUrl)" alt="@Model.Make @Model.Model" class="car-image">
-                            }
-                        </td>
-                        <td><strong>Yıl:</strong> @Model.Year</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Fiyat:</strong> @Model.PricePerDay ₺/gün</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Durum:</strong> @(Model.IsAvailable.HasValue ? (Model.IsAvailable.Value ? "Mevcut" : "Dolu") : "Bilinmiyor")</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Renk:</strong> @Model.Color</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Yakıt Türü:</strong> @Model.FuelType</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Vites Türü:</strong> @(Model.IsAutomatic.HasValue && Model.IsAutomatic.Value ? "Otomatik" : "Manuel")</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Klima:</strong> @(Model.IsAirConditioned.HasValue ? (Model.IsAirConditioned.Value ? "Var" : "Yok") : "Bilinmiyor")</td>
+            <!-- Sağ İçerik -->
+            <div class="container-fluid content-wrapper">
+                <div class="car-details-table">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th colspan="2" class="text-center">Araç Detayları</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="8" class="car-image-container">
+                                    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                                    {
+                                        <img src="@Url.Content(Model.ImageUrl)" alt="@Model.Make @Model.Model" class="car-image">
+                                    }
+                                </td>
+                                <td><strong>Yıl:</strong> @Model.Year</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fiyat:</strong> @Model.PricePerDay ₺/gün</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Durum:</strong> @(Model.IsAvailable.HasValue ? (Model.IsAvailable.Value ? "Mevcut" :
+                                    "Dolu") : "Bilinmiyor")</ td >
+                            </tr>
+                            <tr>
+                                <td><strong>Renk:</strong> @Model.Color</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Yakıt Türü:</strong> @Model.FuelType</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vites Türü:</strong> @(Model.IsAutomatic.HasValue && Model.IsAutomatic.Value ?
+                                    "Otomatik" : "Manuel")</ td >
+                            </tr>
+                            <tr>
+                                <td><strong>Klima:</strong> @(Model.IsAirConditioned.HasValue ? (Model.IsAirConditioned.Value ?
+                                    "Var" : "Yok") : "Bilinmiyor")</ td >
                     </tr>
                     <tr>
                         <td><strong>Kilometre:</strong> @Model.Mileage km</td>

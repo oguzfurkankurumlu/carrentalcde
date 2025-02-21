@@ -85,6 +85,8 @@
                 <a href="@Url.Action("UserList", "Admin")">Kullanıcılar</a>
                 <a href="@Url.Action("AddUser", "Admin")">Yeni Kullanıcı Ekle</a>
                 <a href="@Url.Action("Index", "Car")">Araçlar</a>
+                <a href="@Url.Action("Rentals", "Admin")">Kiralama Listesi</a>
+
             </div>
 
             <!-- Sağ İçerik Paneli -->
@@ -118,7 +120,7 @@
                                     <td>
                                         <!-- Düzenleme ve Silme Butonları -->
                                         <a href="@Url.Action("EditUser", "Admin", new { id = user.UserId })"
-                                            class="btn btn-primary btn-sm">Düzenle</a>                                      
+                                            class="btn btn-primary btn-sm">Düzenle</a>
 
 
                                         <a href="@Url.Action("DeleteUser", "Admin", new { id = user.UserId })"

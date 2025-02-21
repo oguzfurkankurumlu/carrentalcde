@@ -1,0 +1,143 @@
+@model List<RentalDTO>
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Paneli - Kiralanan Araçlar</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Genel stil */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            /* Yatay kaydırmayı engelle */
+        }
+
+        /* Sol Menü */
+        .sidebar {
+            height: 100vh;
+            width: 220px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            color: white;
+            padding-top: 20px;
+            transition: 0.3s;
+            overflow-y: auto;
+            /* Dikey kaydırma olabilir */
+        }
+
+        /* Sol Menü Linkleri */
+        .sidebar a {
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+            font-size: 18px;
+        }
+
+        .sidebar a:hover {
+            background-color: #575d63;
+        }
+
+        /* Sağ İçerik Paneli */
+        .content-wrapper {
+            margin-left: 220px;
+            /* Sol menü genişliğine göre hizalama */
+            padding: 20px;
+            max-width: calc(100% - 220px);
+            /* Genişlik sınırlaması */
+            overflow-x: auto;
+            /* Sağ panelin taşmasını engelle */
+        }
+
+        @@media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .content-wrapper {
+                margin-left: 200px;
+                max-width: calc(100% - 200px);
+            }
+        }
+
+        @@media (max-width: 480px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .content-wrapper {
+                margin-left: 0;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sol Menü (Sidebar) -->
+    <div class="sidebar">
+        <h4 class="text-center text-white">Admin Paneli</h4>
+        <a href="@Url.Action("UserList", "Admin")">Kullanıcılar</a>
+        <a href="@Url.Action("AddUser", "Admin")">Yeni Kullanıcı Ekle</a>
+        <a href="@Url.Action("Index", "Car")">Araçlar</a>
+        <a href="@Url.Action("Rentals", "Admin")">Kiralama Listesi</a>
+    </div>
+
+    <!-- Sağ Panel (Ana İçerik) -->
+    <div class="container-fluid content-wrapper" id="contentWrapper">
+        <h2>Kiralanan Araçlar</h2>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Rental ID</th>
+                    <th>Car ID</th>
+                    <th>User ID</th>
+                    <th>Pickup Office</th>
+                    <th>Return Office</th>
+                    <th>Rental Date</th>
+                    <th>Return Date</th>
+                    <th>Rental Time</th>
+                    <th>Return Time</th>
+                    <th>Rental Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var rental in Model)
+                {
+                    <tr>
+                        <td>@rental.RentalID</td>
+                        <td>@rental.CarID</td>
+                        <td>@rental.UserID</td>
+                        <td>@rental.PickupOffice</td>
+                        <td>@rental.ReturnOffice</td>
+                        <td>@rental.RentalDate.ToString("yyyy-MM-dd")</td>
+                        <td>@rental.ReturnDate.ToString("yyyy-MM-dd")</td>
+                        <td>@rental.RentalTime</td>
+                        <td>@rental.ReturnTime</td>
+                        <td>@rental.RentalStatus</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, ve jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

@@ -70,59 +70,61 @@
             background-color: #f8f9fa;
         }
 
-        @@media(max-width: 768px) {
-            .sidebar {
-                width: 200px;
+        @@media(max - width: 768px) {
+                .sidebar {
+                    width: 200px;
+                }
+
+                .content-wrapper {
+                    margin-left: 200px;
+                    max-width: calc(100% - 200px);
+                }
             }
 
-            .content-wrapper {
-                margin-left: 200px;
-                max-width: calc(100% - 200px);
-            }
-        }
+            @@media(max - width: 480px) {
+                    .sidebar {
+                        width: 100%;
+                        height: auto;
+                        position: relative;
+                    }
 
-        @@media(max-width: 480px) {
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-            }
+                    .content-wrapper {
+                        margin-left: 0;
+                        max-width: 100%;
+                    }
+                }
+            </style>
+        </head>
 
-            .content-wrapper {
-                margin-left: 0;
-                max-width: 100%;
-            }
-        }
-    </style>
-</head>
+        <body>
 
-<body>
+            <div class="admin-panel">
+                <div class="text-center">
+                    <h1>Admin Paneli</h1>
+                    <p>Hoşgeldiniz! Admin paneline başlamak için aşağıdaki butona tıklayın.</p>
+                    <a href="javascript:void(0);" class="btn btn-primary btn-lg" id="startButton">Admin Paneline Başla</a>
+                </div>
+            </div>
 
-    <div class="admin-panel">
-        <div class="text-center">
-            <h1>Admin Paneli</h1>
-            <p>Hoşgeldiniz! Admin paneline başlamak için aşağıdaki butona tıklayın.</p>
-            <a href="javascript:void(0);" class="btn btn-primary btn-lg" id="startButton">Admin Paneline Başla</a>
-        </div>
-    </div>
+            <!-- Sol Menü (Sidebar) -->
+            <div class="sidebar">
+                <h4 class="text-center text-white">Admin Paneli</h4>
+                <a href="@Url.Action("UserList", "Admin")">Kullanıcılar</a>
+                <a href="@Url.Action("AddUser", "Admin")">Yeni Kullanıcı Ekle</a>
+                <a href="@Url.Action("Index", "Car")">Araçlar</a>
+                <a href="@Url.Action("Rentals", "Admin")">Kiralama Listesi</a>
 
-    <!-- Sol Menü (Sidebar) -->
-    <div class="sidebar">
-        <h4 class="text-center text-white">Admin Paneli</h4>
-        <a href="@Url.Action("UserList", "Admin")">Kullanıcılar</a>
-        <a href="@Url.Action("AddUser", "Admin")">Yeni Kullanıcı Ekle</a>
-        <a href="@Url.Action("Index", "Car")">Araçlar</a>
-        
 
-    </div>
 
-    <!-- Sağ Panel (Ana İçerik) -->
-    <div class="container-fluid content-wrapper" id="contentWrapper">
-        <div id="userList" style="display:none;">
-            
-        </div>
+            </div>
 
-        @* <div id="addUserForm" style="display:none;">
+            <!-- Sağ Panel (Ana İçerik) -->
+            <div class="container-fluid content-wrapper" id="contentWrapper">
+                <div id="userList" style="display:none;">
+
+                </div>
+
+                @* <div id="addUserForm" style="display:none;">
                     <h2 class="my-4">Yeni Kullanıcı Ekle</h2>
                     <form method="post" action="@Url.Action("AddUser", "Admin")">
                         <div class="form-group">
@@ -140,33 +142,33 @@
                         <button type="submit" class="btn btn-success">Kullanıcı Ekle</button>
                     </form>
                 </div> *@
-    </div>
+            </div>
 
-    <!-- Bootstrap JS, Popper.js, ve jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <!-- Bootstrap JS, Popper.js, ve jQuery -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script>
-        // Butona tıklandığında admin panelini göster
-        document.getElementById('startButton').onclick = function () {
-            document.querySelector('.admin-panel').style.display = 'none';  // Admin paneli ekranını gizle
-            document.querySelector('.sidebar').style.display = 'block';  // Sol menüyü göster
-            document.querySelector('.content-wrapper').style.display = 'block';  // İçerik panelini göster
-        };
+            <script>
+                // Butona tıklandığında admin panelini göster
+                document.getElementById('startButton').onclick = function () {
+                    document.querySelector('.admin-panel').style.display = 'none';  // Admin paneli ekranını gizle
+                    document.querySelector('.sidebar').style.display = 'block';  // Sol menüyü göster
+                    document.querySelector('.content-wrapper').style.display = 'block';  // İçerik panelini göster
+                };
 
-        // Sol menü öğelerine tıklanarak içerikleri değiştirme
-        document.getElementById('usersMenu').onclick = function () {
-            document.getElementById('userList').style.display = 'block';  // Kullanıcı listesi görünür
-            document.getElementById('addUserForm').style.display = 'none';  // Kullanıcı ekleme formu gizli
-        };
+                // Sol menü öğelerine tıklanarak içerikleri değiştirme
+                document.getElementById('usersMenu').onclick = function () {
+                    document.getElementById('userList').style.display = 'block';  // Kullanıcı listesi görünür
+                    document.getElementById('addUserForm').style.display = 'none';  // Kullanıcı ekleme formu gizli
+                };
 
-        document.getElementById('addUserMenu').onclick = function () {
-            document.getElementById('userList').style.display = 'none';  // Kullanıcı listesi gizli
-            document.getElementById('addUserForm').style.display = 'block';  // Kullanıcı ekleme formu görünür
-        };
-    </script>
+                document.getElementById('addUserMenu').onclick = function () {
+                    document.getElementById('userList').style.display = 'none';  // Kullanıcı listesi gizli
+                    document.getElementById('addUserForm').style.display = 'block';  // Kullanıcı ekleme formu görünür
+                };
+            </script>
 
-</body>
+        </body>
 
-</html>
+        </html>

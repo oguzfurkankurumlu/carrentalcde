@@ -94,29 +94,29 @@ public class AdminController : Controller
 
 
 
-    // // Kiralanan Araçlar Listesi
-    // public IActionResult Rentals()
-    // {
-    //     ViewData["HideTopbar"] = false;
-    //     ViewData["HideNavbar"] = false;
-    //     ViewData["HideFooter"] = false;
+    // Kiralanan Araçlar Listesi
+    public IActionResult Rentals()
+    {
+        ViewData["HideTopbar"] = false;
+        ViewData["HideNavbar"] = false;
+        ViewData["HideFooter"] = false;
 
-    //     var rentals = _rentalDbContext.Rentals
-    //         .Select(r => new RentalDTO
-    //         {
-    //             RentalId = r.RentalId,
-    //             CarId = r.CarID,
-    //             UserId = r.UserID,
-    //             PickupOffice = r.PickupOffice,
-    //             ReturnOffice = r.ReturnOffice,
-    //             RentalDate = r.RentalDate,
-    //             ReturnDate = r.ReturnDate,
-    //             RentalTime = r.RentalTime,
-    //             ReturnTime = r.ReturnTime,
-    //             RentalStatus = r.RentalStatus
-    //         })
-    //         .ToList();
+        var rentals = _rentalDbContext.Rentals
+            .Select(r => new RentalDTO
+            {
+                RentalID = r.RentalID,
+                CarID = r.CarID,
+                UserID = r.UserID,
+                PickupOffice = r.PickupOffice,
+                ReturnOffice = r.ReturnOffice,
+                RentalDate = r.RentalDate,
+                ReturnDate = r.ReturnDate,
+                RentalTime = r.RentalTime,
+                ReturnTime = r.ReturnTime,
+                RentalStatus = r.RentalStatus
+            })
+            .ToList();
 
-    //     return View(rentals);
-    // }
+        return View(rentals);
+    }
 }
