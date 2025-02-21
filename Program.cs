@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 // Veritabanı bağlantısını burada yapılandırıyoruz.
 builder.Services.AddDbContext<UserDbContext>(options =>
@@ -11,10 +11,9 @@ builder.Services.AddDbContext<UserDbContext>(options =>
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
      options.UseSqlServer(builder.Configuration.GetConnectionString("CarDbContext")));
 
-//Rental için yeni bir DbContext ekliyoruz
+// Rental için yeni bir DbContext ekliyoruz
 builder.Services.AddDbContext<RentalDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("RentalDbContextConnection")));
-
 
 // IUserService servisini ekliyoruz
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -24,8 +23,6 @@ builder.Services.AddScoped<ICarService, CarService>();
 // Repository ve Service katmanlarını DI container'a ekliyoruz
 builder.Services.AddScoped<IRentalRepository, RentalRepository>();
 builder.Services.AddScoped<IRentalService, RentalService>();
-
-
 
 // Session'ı yapılandırıyoruz
 builder.Services.AddDistributedMemoryCache(); // Bellek tabanlı cache kullanıyoruz
@@ -37,7 +34,12 @@ builder.Services.AddSession(options =>
 });
 builder.Services.AddHttpContextAccessor(); // HttpContextAccessor ekliyoruz
 
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.AccessDeniedPath = "/Account/AccessDenied";
+    });
 
 builder.Services.AddControllersWithViews();
 var app = builder.Build();
@@ -55,8 +57,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles(); // Statik dosyalar için kullanılır
 app.UseRouting();
 app.UseAuthorization();
-
-
+app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",

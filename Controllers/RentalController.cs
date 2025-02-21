@@ -34,29 +34,37 @@ public class RentalController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult CreateRental(RentalDTO rentalDTO)
     {
+        int? userId = HttpContext.Session.GetInt32("UserId");
+
+        // Kullanıcı giriş yapmamışsa işlem yapma
+        if (!userId.HasValue)
+        {
+            TempData["ErrorMessage"] = "Kiralama yapabilmek için giriş yapmalısınız.";
+            return RedirectToAction("Login"); // Kullanıcı giriş sayfasına yönlendirilsin
+        }
+
         if (ModelState.IsValid)
         {
-            // Rental verilerini alıp, veritabanına kaydediyoruz
             var rental = new Rental
             {
-                UserID = rentalDTO.UserID, // Kullanıcı bilgisi, örneğin oturumdan alabilirsiniz.
-                //CarID = rentalDTO.CarID,
+                UserID = userId.Value, // Kullanıcı ID burada eklendi
+                                       //CarID = rentalDTO.CarID, // Eksik olan atama
                 RentalDate = rentalDTO.RentalDate,
                 ReturnDate = rentalDTO.ReturnDate,
-                RentalStatus = "Aktif", // Örnek bir durum, sabitler veya enum kullanılabilir
+                RentalStatus = "Aktif",
                 PickupOffice = rentalDTO.PickupOffice,
                 ReturnOffice = rentalDTO.ReturnOffice,
                 RentalTime = rentalDTO.RentalTime,
                 ReturnTime = rentalDTO.ReturnTime
             };
 
-            // Rental'ı veritabanına ekliyoruz
             _rentalContext.Rentals.Add(rental);
             _rentalContext.SaveChanges();
 
-            return RedirectToAction("Index"); // Kiralama tamamlandıktan sonra yönlendirme
+            return RedirectToAction("Index");
         }
 
-        return View(rentalDTO); // Eğer model geçerli değilse aynı formu geri döneriz
+        return View(rentalDTO);
     }
+
 }

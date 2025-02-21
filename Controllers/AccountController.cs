@@ -101,7 +101,8 @@ public class AccountController : Controller
 
         if (user != null && user.Password == password)
         {
-            // Başarılı giriş
+            // Kullanıcı ID'sini ve adını session içinde sakla
+            HttpContext.Session.SetInt32("UserId", user.UserId);
             HttpContext.Session.SetString("UserFullName", user.FirstName + " " + user.LastName);
             return RedirectToAction("Index", "Home");
         }
