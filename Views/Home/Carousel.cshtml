@@ -1,3 +1,5 @@
+@model List<CarDTO>
+
 <!-- Carousel Start -->
 <div class="header-carousel">
     <div id="carouselId" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
@@ -15,6 +17,26 @@
                             <div class="col-lg-6 fadeInLeft animated" data-animation="fadeInLeft" data-delay="1s"
                                 style="animation-delay: 1s;">
                                 <div class="bg-secondary rounded p-5">
+                                    @if (TempData["ErrorMessage"] != null)
+                                    {
+                                        <div class="alert alert-danger">
+                                            <strong>@TempData["ErrorMessage"]</strong><br />
+                                            Seçtiğiniz Tarihler: <br />
+                                            <strong>Kiralama Başlangıç:</strong> @TempData["SelectedRentalDate"] <br />
+                                            <strong>İade Tarihi:</strong> @TempData["SelectedReturnDate"]
+                                        </div>
+                                    }
+
+                                    @if (TempData["SuccessMessage"] != null)
+                                    {
+                                        <div class="alert alert-success">
+                                            <strong>@TempData["SuccessMessage"]</strong><br />
+                                            Kiraladığınız Tarihler: <br />
+                                            <strong>Başlangıç:</strong> @TempData["SelectedRentalDate"] <br />
+                                            <strong>Bitiş:</strong> @TempData["SelectedReturnDate"]
+                                        </div>
+                                    }
+
                                     <h4 class="text-white mb-4">ARAÇ KİRALA</h4>
                                     <form method="post" asp-action="CreateRental" onsubmit="return checkLogin(event);">
                                         <div class="row g-3">
@@ -27,7 +49,6 @@
                                                     }
                                                 </select>
                                             </div>
-
                                             <div class="col-12">
                                                 <div class="input-group">
                                                     <div
@@ -120,45 +141,33 @@
 </div>
 <!-- Carousel End -->
 
-
-<!-- Script Dosyasını Dahil Et -->
-<script src="~/js/sehirler.js"></script>
-
-
-
-
 <script>
-   function checkLogin(event) {
-    var userId = '@(Context.Session.GetInt32("UserId"))'; // Kullanıcı ID'yi al
-    console.log("Giriş yapan Kullanıcı ID:", userId); // Konsola yazdır
+    async function checkLogin(event) {
+        var userId = '@(Context.Session.GetInt32("UserId"))'; // Kullanıcı ID'yi al
 
-    // Eğer kullanıcı giriş yapmamışsa uyarı ver
-    if (!userId || userId === "null") {
-        event.preventDefault(); // Formun gönderilmesini engelle
-        alert("Kiralama yapabilmek için giriş yapmalısınız.");
-        return false;
-    }
+        // Eğer userId "null", "undefined" veya boş bir string olarak gelirse giriş yapılmamış demektir.
+        if (!userId || userId === "null" || userId === "undefined" || userId.trim() === "") {
+            event.preventDefault(); // Formun gönderilmesini engelle
+            alert("Kiralama yapabilmek için giriş yapmalısınız.");
+            return false;
+        }
 
-    // Tarih alanlarını al
-    var rentalDate = document.querySelector("input[name='RentalDate']").value;
-    var returnDate = document.querySelector("input[name='ReturnDate']").value;
+        console.log("Giriş yapan Kullanıcı ID:", userId); // Konsola yazdır
 
-    // Eğer tarihler boşsa kontrol etme
-    if (!rentalDate || !returnDate) {
-        return true;
-    }
+        var rentalDate = document.querySelector("input[name='RentalDate']").value;
+        var returnDate = document.querySelector("input[name='ReturnDate']").value;
 
-    // Tarihleri Date objesine çevir
-    var rentalDateObj = new Date(rentalDate);
-    var returnDateObj = new Date(returnDate);
+        if (!rentalDate || !returnDate) {
+            return true;
+        }
 
-    // Eğer alış tarihi, teslim tarihinden ileri ise uyarı ver
-    if (rentalDateObj >= returnDateObj) {
-        event.preventDefault();
-        alert("Teslim tarihi, alış tarihinden ileri bir tarih olmalıdır.");
-        return false;
-    }
+        var rentalDateObj = new Date(rentalDate);
+        var returnDateObj = new Date(returnDate);
 
-    return true; // Form gönderilmeye devam edebilir
+        if (rentalDateObj >= returnDateObj) {
+            event.preventDefault();
+            alert("Teslim tarihi, alış tarihinden ileri bir tarih olmalıdır.");
+            return false;
+        }
     }
 </script>

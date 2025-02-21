@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 public class AdminController : Controller
 {
     private readonly IUserService _userService;
+    private readonly RentalDbContext _rentalDbContext;
 
-    public AdminController(IUserService userService)
+
+    public AdminController(IUserService userService, RentalDbContext rentalDbContext)
     {
         _userService = userService;
+        _rentalDbContext = rentalDbContext;
     }
 
     // Admin Paneli - Kullanıcı Listesi
@@ -86,4 +89,34 @@ public class AdminController : Controller
         _userService.DeleteUser(id);
         return RedirectToAction("Index");  // Kullanıcı silindikten sonra Admin Paneli sayfasına dön
     }
+
+
+
+
+
+    // // Kiralanan Araçlar Listesi
+    // public IActionResult Rentals()
+    // {
+    //     ViewData["HideTopbar"] = false;
+    //     ViewData["HideNavbar"] = false;
+    //     ViewData["HideFooter"] = false;
+
+    //     var rentals = _rentalDbContext.Rentals
+    //         .Select(r => new RentalDTO
+    //         {
+    //             RentalId = r.RentalId,
+    //             CarId = r.CarID,
+    //             UserId = r.UserID,
+    //             PickupOffice = r.PickupOffice,
+    //             ReturnOffice = r.ReturnOffice,
+    //             RentalDate = r.RentalDate,
+    //             ReturnDate = r.ReturnDate,
+    //             RentalTime = r.RentalTime,
+    //             ReturnTime = r.ReturnTime,
+    //             RentalStatus = r.RentalStatus
+    //         })
+    //         .ToList();
+
+    //     return View(rentals);
+    // }
 }

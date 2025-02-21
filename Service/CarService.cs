@@ -12,7 +12,7 @@ public class CarService : ICarService
         var cars = _carRepository.GetAllCars();
         return cars.Select(car => new CarDTO
         {
-            CarId = car.CarId ?? 0,
+            CarId = car.CarId,
             Model = car.Model,
             Make = car.Make,
             Year = car.Year,
@@ -37,7 +37,7 @@ public class CarService : ICarService
 
         return new CarDTO
         {
-            CarId = car.CarId ?? 0,
+            CarId = car.CarId,
             Model = car.Model,
             Make = car.Make,
             Year = car.Year,

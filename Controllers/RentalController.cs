@@ -19,7 +19,7 @@ public class RentalController : Controller
         // Veritabanından araçları alıp modele gönderiyoruz
         var cars = _appContext.Cars.Select(car => new CarDTO
         {
-            CarId = car.CarId ?? 0,
+            CarId = car.CarId,
             Make = car.Make,
             Model = car.Model
         }).ToList();
