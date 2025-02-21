@@ -1,0 +1,170 @@
+@model RentalDTO
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Paneli - Kiralama Düzenle</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Genel stil */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            /* Yatay kaydırmayı engelle */
+        }
+
+        /* Sol Menü */
+        .sidebar {
+            height: 100vh;
+            width: 220px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            color: white;
+            padding-top: 20px;
+            transition: 0.3s;
+            overflow-y: auto;
+            /* Dikey kaydırma olabilir */
+        }
+
+        /* Sol Menü Linkleri */
+        .sidebar a {
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+            font-size: 18px;
+        }
+
+        .sidebar a:hover {
+            background-color: #575d63;
+        }
+
+        /* Sağ İçerik Paneli */
+        .content-wrapper {
+            margin-left: 220px;
+            /* Sol menü genişliğine göre hizalama */
+            padding: 20px;
+            max-width: calc(100% - 220px);
+            /* Genişlik sınırlaması */
+            overflow-x: auto;
+            /* Sağ panelin taşmasını engelle */
+        }
+
+        @@media(max - width: 768px) {
+                .sidebar {
+                    width: 200px;
+                }
+
+                .content-wrapper {
+                    margin-left: 200px;
+                    max-width: calc(100% - 200px);
+                }
+            }
+
+            @@media(max - width: 480px) {
+                    .sidebar {
+                        width: 100%;
+                        height: auto;
+                        position: relative;
+                    }
+
+                    .content-wrapper {
+                        margin-left: 0;
+                        max-width: 100%;
+                    }
+                }
+            </style>
+        </head>
+
+        <body>
+
+            <!-- Sol Menü (Sidebar) -->
+            <div class="sidebar">
+                <h4 class="text-center text-white">Admin Paneli</h4>
+                <a href="@Url.Action("UserList", "Admin")">Kullanıcılar</a>
+                <a href="@Url.Action("AddUser", "Admin")">Yeni Kullanıcı Ekle</a>
+                <a href="@Url.Action("Index", "Car")">Araçlar</a>
+                <a href="@Url.Action("Rentals", "Admin")">Kiralama Listesi</a>
+            </div>
+
+            <!-- Sağ Panel (Ana İçerik) -->
+             <!-- Sağ İçerik Paneli -->
+            <div class="container-fluid content-wrapper" style="margin-top: 30px; padding: 20px;">
+
+                <h2 class="mb-4">Kiralama Düzenle</h2>
+
+
+                <form asp-action="EditRental" method="post">
+                    <input type="hidden" asp-for="RentalID" />
+
+                    <div class="form-group">
+                        <label for="UserID">Kullanıcı ID</label>
+                        <input asp-for="UserID" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CarID">Araç ID</label>
+                        <input asp-for="CarID" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PickupOffice">Alış Ofisi</label>
+                        <select asp-for="PickupOffice" class="form-control">
+                            <option value="Ankara">Ankara</option>
+                            <option value="Istanbul">Istanbul</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ReturnOffice">Teslim Ofisi</label>
+                        <select asp-for="ReturnOffice" class="form-control">
+                            <option value="Ankara">Ankara</option>
+                            <option value="Istanbul">Istanbul</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="RentalDate">Kiralama Tarihi</label>
+                        <input asp-for="RentalDate" class="form-control" type="date" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ReturnDate">Teslim Tarihi</label>
+                        <input asp-for="ReturnDate" class="form-control" type="date" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="RentalTime">Kiralama Saati</label>
+                        <input asp-for="RentalTime" class="form-control" type="time" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ReturnTime">Teslim Saati</label>
+                        <input asp-for="ReturnTime" class="form-control" type="time" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="RentalStatus">Durum</label>
+                        <select asp-for="RentalStatus" class="form-control">
+                            <option value="Aktif">Aktif</option>
+                            <option value="Pasif">Pasif</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Kaydet</button>
+                </form>
+            </div>
+                <!-- Bootstrap JS, Popper.js, ve jQuery -->
+                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        </body>
+
+        </html>

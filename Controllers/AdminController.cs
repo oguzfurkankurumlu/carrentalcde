@@ -119,4 +119,82 @@ public class AdminController : Controller
 
         return View(rentals);
     }
+
+
+    // Kiralama Düzenleme (GET)
+    public IActionResult EditRental(int id)
+    {
+        ViewData["HideTopbar"] = false;
+        ViewData["HideNavbar"] = false;
+        ViewData["HideFooter"] = false;
+
+        var rental = _rentalDbContext.Rentals
+            .Where(r => r.RentalID == id)
+            .Select(r => new RentalDTO
+            {
+                RentalID = r.RentalID,
+                CarID = r.CarID,
+                UserID = r.UserID,
+                PickupOffice = r.PickupOffice,
+                ReturnOffice = r.ReturnOffice,
+                RentalDate = r.RentalDate,
+                ReturnDate = r.ReturnDate,
+                RentalTime = r.RentalTime,
+                ReturnTime = r.ReturnTime,
+                RentalStatus = r.RentalStatus
+            })
+            .FirstOrDefault();
+
+        if (rental == null)
+        {
+            return NotFound();
+        }
+
+        return View(rental);
+    }
+
+    // Kiralama Düzenleme (POST)
+    [HttpPost]
+    public IActionResult EditRental(RentalDTO rentalDto)
+    {
+        var rental = _rentalDbContext.Rentals.FirstOrDefault(r => r.RentalID == rentalDto.RentalID);
+
+        if (rental == null)
+        {
+            return NotFound();
+        }
+
+        rental.CarID = rentalDto.CarID;
+        rental.UserID = rentalDto.UserID;
+        rental.PickupOffice = rentalDto.PickupOffice;
+        rental.ReturnOffice = rentalDto.ReturnOffice;
+        rental.RentalDate = rentalDto.RentalDate;
+        rental.ReturnDate = rentalDto.ReturnDate;
+        rental.RentalTime = rentalDto.RentalTime;
+        rental.ReturnTime = rentalDto.ReturnTime;
+        rental.RentalStatus = rentalDto.RentalStatus;
+
+        _rentalDbContext.SaveChanges();
+
+        return RedirectToAction("Rentals");
+    }
+
+    // Kiralama Silme
+    public IActionResult DeleteRental(int id)
+    {
+        ViewData["HideTopbar"] = false;
+        ViewData["HideNavbar"] = false;
+        ViewData["HideFooter"] = false;
+        var rental = _rentalDbContext.Rentals.FirstOrDefault(r => r.RentalID == id);
+
+        if (rental == null)
+        {
+            return NotFound();
+        }
+
+        _rentalDbContext.Rentals.Remove(rental);
+        _rentalDbContext.SaveChanges();
+
+        return RedirectToAction("Rentals");
+    }
 }
