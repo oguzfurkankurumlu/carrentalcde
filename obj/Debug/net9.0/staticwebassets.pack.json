@@ -153,6 +153,10 @@
       "PackagePath": "staticwebassets\\img\\testimonial-3.jpg"
     },
     {
+      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\wallpaper.png",
+      "PackagePath": "staticwebassets\\img\\wallpaper.png"
+    },
+    {
       "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\js\\kiralamagunu.js",
       "PackagePath": "staticwebassets\\js\\kiralamagunu.js"
     },

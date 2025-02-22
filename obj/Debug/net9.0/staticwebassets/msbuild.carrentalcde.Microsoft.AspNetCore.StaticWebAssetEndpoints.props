@@ -456,6 +456,18 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"h8cej0m5kx"},{"Name":"integrity","Value":"sha256-cciLUBFFq2hIhjoEo7cox2uK7q43zgIjy8Q3y3VU8V4="},{"Name":"label","Value":"_content/carrentalcde/img/Thumbs.db"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"210944"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022cciLUBFFq2hIhjoEo7cox2uK7q43zgIjy8Q3y3VU8V4=\u0022"},{"Name":"Last-Modified","Value":"Thu, 14 Mar 2024 12:31:44 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/carrentalcde/img/wallpaper.jzxn90s48h.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\wallpaper.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"jzxn90s48h"},{"Name":"integrity","Value":"sha256-MYutSNuh4by4X2M5/6XpQttSc8wh9WM9lfabT2YkVws="},{"Name":"label","Value":"_content/carrentalcde/img/wallpaper.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"94829"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022MYutSNuh4by4X2M5/6XpQttSc8wh9WM9lfabT2YkVws=\u0022"},{"Name":"Last-Modified","Value":"Sat, 22 Feb 2025 10:29:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/carrentalcde/img/wallpaper.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\wallpaper.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-MYutSNuh4by4X2M5/6XpQttSc8wh9WM9lfabT2YkVws="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"94829"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022MYutSNuh4by4X2M5/6XpQttSc8wh9WM9lfabT2YkVws=\u0022"},{"Name":"Last-Modified","Value":"Sat, 22 Feb 2025 10:29:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/carrentalcde/js/kiralamagunu.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\kiralamagunu.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>

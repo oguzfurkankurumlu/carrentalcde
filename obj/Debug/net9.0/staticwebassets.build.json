@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Xsq7Djly4NPbi/povrLaGFc0Q72UIWv6Elb9V78sqWU=",
+  "Hash": "ULcil/Ctuly1rvsC9KaGc9XsDP7smqUCF+BQCVi+08g=",
   "Source": "carrentalcde",
   "BasePath": "_content/carrentalcde",
   "Mode": "Default",
@@ -2661,6 +2661,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\Thumbs.db"
+    },
+    {
+      "Identity": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\wallpaper.png",
+      "SourceId": "carrentalcde",
+      "SourceType": "Discovered",
+      "ContentRoot": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\",
+      "BasePath": "_content/carrentalcde",
+      "RelativePath": "img/wallpaper#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "jzxn90s48h",
+      "Integrity": "MYutSNuh4by4X2M5/6XpQttSc8wh9WM9lfabT2YkVws=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\wallpaper.png"
     },
     {
       "Identity": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\js\\kiralamagunu.js",
@@ -10767,6 +10788,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-cciLUBFFq2hIhjoEo7cox2uK7q43zgIjy8Q3y3VU8V4="
+        }
+      ]
+    },
+    {
+      "Route": "img/wallpaper.jzxn90s48h.png",
+      "AssetFile": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\wallpaper.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "94829"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MYutSNuh4by4X2M5/6XpQttSc8wh9WM9lfabT2YkVws=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 22 Feb 2025 10:29:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "jzxn90s48h"
+        },
+        {
+          "Name": "label",
+          "Value": "img/wallpaper.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-MYutSNuh4by4X2M5/6XpQttSc8wh9WM9lfabT2YkVws="
+        }
+      ]
+    },
+    {
+      "Route": "img/wallpaper.png",
+      "AssetFile": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\wallpaper.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "94829"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MYutSNuh4by4X2M5/6XpQttSc8wh9WM9lfabT2YkVws=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 22 Feb 2025 10:29:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-MYutSNuh4by4X2M5/6XpQttSc8wh9WM9lfabT2YkVws="
         }
       ]
     },
