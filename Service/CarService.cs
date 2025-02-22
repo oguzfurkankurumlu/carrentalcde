@@ -85,19 +85,19 @@ public class CarService : ICarService
         if (car == null)
             return;
 
-        car.Make = carDto.Make ?? car.Make;
-        car.Model = carDto.Model ?? car.Model;
-        car.Year = carDto.Year ?? car.Year;
-        car.PricePerDay = carDto.PricePerDay ?? car.PricePerDay;
-        car.IsAvailable = carDto.IsAvailable ?? car.IsAvailable;
-        car.Description = carDto.Description ?? car.Description;
-        car.Color = carDto.Color ?? car.Color;
-        car.ImageUrl = carDto.ImageUrl ?? car.ImageUrl;
-        car.Mileage = carDto.Mileage ?? car.Mileage;
-        car.IsAirConditioned = carDto.IsAirConditioned ?? car.IsAirConditioned;
-        car.IsAutomatic = carDto.IsAutomatic ?? car.IsAutomatic;
-        car.CarType = carDto.CarType ?? car.CarType;
-        car.FuelType = carDto.FuelType ?? car.FuelType;
+        car.Model = carDto.Model;
+        car.Make = carDto.Make;
+        car.Year = carDto.Year;
+        car.PricePerDay = carDto.PricePerDay;
+        car.IsAvailable = carDto.IsAvailable;
+        car.Description = carDto.Description;
+        car.Color = carDto.Color;
+        car.ImageUrl = carDto.ImageUrl;
+        car.Mileage = carDto.Mileage;
+        car.IsAirConditioned = carDto.IsAirConditioned;
+        car.IsAutomatic = carDto.IsAutomatic;
+        car.CarType = carDto.CarType;
+        car.FuelType = carDto.FuelType;
 
         _carRepository.UpdateCar(car);
     }

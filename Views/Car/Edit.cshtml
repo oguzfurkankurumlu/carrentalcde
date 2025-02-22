@@ -1,4 +1,4 @@
-@* @model CarDTO
+@model CarDTO
 
 <!DOCTYPE html>
 <html lang="tr">
@@ -6,15 +6,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Araç Düzenle - Admin Paneli</title>
+    <title>Araç Düzenle</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        /* Genel stil */
         body {
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            /* Yatay kaydırmayı engelle */
         }
 
+        /* Sol Menü */
         .sidebar {
             height: 100vh;
             width: 220px;
@@ -26,8 +29,10 @@
             padding-top: 20px;
             transition: 0.3s;
             overflow-y: auto;
+            /* Dikey kaydırma olabilir */
         }
 
+        /* Sol Menü Linkleri */
         .sidebar a {
             color: white;
             padding: 10px 15px;
@@ -40,138 +45,160 @@
             background-color: #575d63;
         }
 
+        /* Sağ İçerik Paneli */
         .content-wrapper {
             margin-left: 220px;
+            /* Sol menü genişliğine göre hizalama */
             padding: 20px;
             max-width: calc(100% - 220px);
+            /* Genişlik sınırlaması */
             overflow-x: auto;
+            /* Sağ panelin taşmasını engelle */
         }
 
-        @@media(max - width: 768px) {
-                .sidebar {
-                    width: 200px;
-                }
-
-                .content-wrapper {
-                    margin-left: 200px;
-                    max-width: calc(100% - 200px);
-                }
+        @@media
+        (max-width: 768px) {
+            .sidebar {
+                width: 200px;
             }
 
-            @@media(max - width: 480px) {
-                    .sidebar {
-                        width: 100%;
-                        height: auto;
-                        position: relative;
-                    }
+            .content-wrapper {
+                margin-left: 200px;
+                max-width: calc(100% - 200px);
+            }
+        }
 
-                    .content-wrapper {
-                        margin-left: 0;
-                        max-width: 100%;
-                    }
-                }
-            </style>
-        </head>
+        @@media
+        (max-width: 480px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
 
-        <body>
+            .content-wrapper {
+                margin-left: 0;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
 
-            <div class="sidebar">
-                <h4 class="text-center text-white">Admin Paneli</h4>
-                <a href="@Url.Action("UserList", "Admin")">Kullanıcılar</a>
-                <a href="@Url.Action("AddUser", "Admin")">Yeni Kullanıcı Ekle</a>
-                <a href="@Url.Action("Index", "Car")">Araçlar</a>
-                <a href="@Url.Action("Rentals", "Admin")">Kiralama Listesi</a>
+<body>
 
+    <!-- Sol Menü (Sidebar) -->
+    <div class="sidebar">
+        <h4 class="text-center text-white">Admin Paneli</h4>
+        <a href="@Url.Action("UserList", "Admin")">Kullanıcılar</a>
+        <a href="@Url.Action("AddUser", "Admin")">Yeni Kullanıcı Ekle</a>
+        <a href="@Url.Action("Index", "Car")">Araçlar</a>
+        <a href="@Url.Action("Rentals", "Admin")">Kiralama Listesi</a>
+        <a href="@Url.Action("Index", "Home")" class="btn btn-danger mt-3">Admin Panelinden Çık</a>
+    </div>
+
+    <!-- Sağ İçerik Paneli -->
+    <div class="container-fluid content-wrapper" style="margin-top: 30px;">
+        <h2 class="mb-4">Araç Düzenle</h2>
+
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="CarId" />
+
+            <div class="form-group">
+                <label asp-for="Make" class="control-label">Marka</label>
+                <input asp-for="Make" class="form-control" />
+                <span asp-validation-for="Make" class="text-danger"></span>
             </div>
 
-            <div class="container-fluid content-wrapper" style="margin-top: 30px;">
-                <h2>Araç Düzenle</h2>
-                <form method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="CarId" value="@Model.CarId" />
-
-                    <div class="form-group">
-                        <label for="Brand">Marka:</label>
-                        <select id="Brand" name="Brand" class="form-control" required>
-                            <option value="Toyota" selected="@(Model.Brand == "Toyota")">Toyota</option>
-                            <option value="Honda" selected="@(Model.Brand == "Honda")">Honda</option>
-                            <option value="Ford" selected="@(Model.Brand == "Ford")">Ford</option>
-                            <option value="BMW" selected="@(Model.Brand == "BMW")">BMW</option>
-                            <option value="Audi" selected="@(Model.Brand == "Audi")">Audi</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="Model">Model:</label>
-                        <input type="text" id="Model" name="Model" value="@Model.Model" class="form-control" required />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="Year">Yıl:</label>
-                        <input type="number" id="Year" name="Year" value="@Model.Year" class="form-control" required />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="Price">Fiyat:</label>
-                        <input type="number" id="Price" name="Price" value="@Model.PricePerDay" class="form-control" required />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="Availability">Durum:</label>
-                        <select id="Availability" name="Availability" class="form-control">
-                            <option value="true" selected="@(Model.IsAvailable == true)">Mevcut</option>
-                            <option value="false" selected="@(Model.IsAvailable == false)">Dolu</option>
-                        </select>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="Description">Açıklama:</label>
-                        <textarea id="Description" name="Description" class="form-control">@Model.Description</textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="Color">Renk:</label>
-                        <input type="text" id="Color" name="Color" value="@Model.Color" class="form-control" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="Mileage">Kilometre:</label>
-                        <input type="number" id="Mileage" name="Mileage" value="@Model.Mileage" class="form-control" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="IsAirConditioned">Klima:</label>
-                        <input type="hidden" name="IsAirConditioned" value="false" />
-                        <input type="checkbox" id="IsAirConditioned" name="IsAirConditioned" value="true"
-                            @(Model.IsAirConditioned == true ? "checked" : "") />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="IsAutomatic">Otomatik Vites:</label>
-                        <input type="hidden" name="IsAutomatic" value="false" />
-                        <input type="checkbox" id="IsAutomatic" name="IsAutomatic" value="true" @(Model.IsAutomatic == true ?
-                            "checked" : "") />
+            <div class="form-group">
+                <label asp-for="Model" class="control-label">Model</label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
             </div>
 
-                    <div class="form-group">
-                        <label for="ImageUrl">Resim:</label>
-                        <input type="file" id="ImageUrl" name="ImageUrl" class="form-control" />
-                @if (!string.IsNullOrEmpty(Model.ImageUrl))
-                        {
-                            <p>Mevcut Resim: <img src="@Model.ImageUrl" alt="Car Image" style="width: 150px; height: auto;" /></p>
-                        }
-                    </div>
-
-                    <br />
-                    <button type="submit" class="btn btn-success">Güncelle</button>
-                    <a href="@Url.Action("Index", "Car")" class="btn btn-primary">Geri Dön</a>
-                </form>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label">Yıl</label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
             </div>
 
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@2.5.2/dist/umd/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <div class="form-group">
+                <label asp-for="PricePerDay" class="control-label">Fiyat</label>
+                <input asp-for="PricePerDay" class="form-control" />
+                <span asp-validation-for="PricePerDay" class="text-danger"></span>
+            </div>
 
-        </body>
+            <div class="form-group">
+                <label asp-for="IsAvailable" class="control-label">Durum</label>
+                <select asp-for="IsAvailable" class="form-control">
+                    <option value="true">Mevcut</option>
+                    <option value="false">Dolu</option>
+                </select>
+                <span asp-validation-for="IsAvailable" class="text-danger"></span>
+            </div>
 
-        </html> *@
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">Açıklama</label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Color" class="control-label">Renk</label>
+                <input asp-for="Color" class="form-control" />
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label">Resim URL</label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Mileage" class="control-label">Kilometre</label>
+                <input asp-for="Mileage" class="form-control" />
+                <span asp-validation-for="Mileage" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IsAirConditioned" class="control-label">Klima</label>
+                <select asp-for="IsAirConditioned" class="form-control">
+                    <option value="true">Var</option>
+                    <option value="false">Yok</option>
+                </select>
+                <span asp-validation-for="IsAirConditioned" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IsAutomatic" class="control-label">Vites</label>
+                <select asp-for="IsAutomatic" class="form-control">
+                    <option value="true">Otomatik</option>
+                    <option value="false">Manuel</option>
+                </select>
+                <span asp-validation-for="IsAutomatic" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CarType" class="control-label">Araç Tipi</label>
+                <input asp-for="CarType" class="form-control" />
+                <span asp-validation-for="CarType" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FuelType" class="control-label">Yakıt Türü</label>
+                <input asp-for="FuelType" class="form-control" />
+                <span asp-validation-for="FuelType" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Kaydet</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, ve jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
