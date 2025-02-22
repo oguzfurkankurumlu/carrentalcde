@@ -5,11 +5,15 @@ using Microsoft.AspNetCore.Mvc;
 public class AccountController : Controller
 {
     private readonly UserDbContext _context;
+    private readonly RentalDbContext _rentalContext;
+    private readonly ApplicationDbContext _applicationDbContext;
 
     // DbContext'i constructor üzerinden alıyoruz
-    public AccountController(UserDbContext context)
+    public AccountController(UserDbContext context, RentalDbContext rentalContext, ApplicationDbContext applicationDbContext)
     {
         _context = context;
+        _rentalContext = rentalContext;
+        _applicationDbContext = applicationDbContext;
     }
 
     [HttpGet]
@@ -193,6 +197,142 @@ public class AccountController : Controller
         // Giriş sayfasına yönlendir
         return RedirectToAction("Login", "Account");
     }
+
+    public IActionResult UserRentals()
+    {
+        ViewData["HideTopbar"] = false;
+        ViewData["HideNavbar"] = false;
+        ViewData["HideFooter"] = false;
+        var userId = HttpContext.Session.GetInt32("UserId");
+        if (userId == null)
+        {
+            return RedirectToAction("Login");
+        }
+
+        // Önce RentalDbContext'ten kiralama verilerini alıyoruz
+        var rentalList = _rentalContext.Rentals
+            .Where(r => r.UserID == userId)
+            .ToList();
+
+        // Ardından ApplicationDbContext'ten araç bilgilerini alıyoruz
+        var rentals = rentalList
+            .Select(r => new RentalDTO
+            {
+                RentalID = r.RentalID,
+                UserID = r.UserID,
+                CarID = r.CarID,
+                RentalDate = r.RentalDate,
+                ReturnDate = r.ReturnDate,
+                RentalStatus = r.RentalStatus,
+                PickupOffice = r.PickupOffice,
+                ReturnOffice = r.ReturnOffice,
+                RentalTime = r.RentalTime,
+                ReturnTime = r.ReturnTime,
+                Cars = _applicationDbContext.Cars
+                    .Where(c => c.CarId == r.CarID)
+                    .Select(c => new CarDTO
+                    {
+                        CarId = c.CarId,
+                        Make = c.Make,
+                        Model = c.Model,
+                        Year = c.Year,
+                        PricePerDay = c.PricePerDay,
+                        IsAvailable = c.IsAvailable,
+                        Description = c.Description,
+                        Color = c.Color,
+                        ImageUrl = c.ImageUrl,
+                        Mileage = c.Mileage,
+                        IsAirConditioned = c.IsAirConditioned,
+                        IsAutomatic = c.IsAutomatic,
+                        CarType = c.CarType,
+                        FuelType = c.FuelType
+                    }).ToList()
+            })
+            .ToList();
+
+        return View(rentals);
+    }
+
+    public IActionResult CancelRental(int rentalId)
+    {
+        var rental = _rentalContext.Rentals.FirstOrDefault(r => r.RentalID == rentalId);
+        if (rental != null)
+        {
+            _rentalContext.Rentals.Remove(rental);
+            _rentalContext.SaveChanges();
+        }
+        return RedirectToAction("UserRentals");
+    }
+
+    [HttpGet]
+    public IActionResult EditRental(int rentalId)
+    {
+        var rental = _rentalContext.Rentals.FirstOrDefault(r => r.RentalID == rentalId);
+        if (rental == null)
+        {
+            return RedirectToAction("UserRentals");
+        }
+
+        var rentalDTO = new RentalDTO
+        {
+            RentalID = rental.RentalID,
+            UserID = rental.UserID,
+            CarID = rental.CarID,
+            RentalDate = rental.RentalDate,
+            ReturnDate = rental.ReturnDate,
+            RentalStatus = rental.RentalStatus,
+            PickupOffice = rental.PickupOffice,
+            ReturnOffice = rental.ReturnOffice,
+            RentalTime = rental.RentalTime,
+            ReturnTime = rental.ReturnTime,
+            Cars = _applicationDbContext.Cars
+                .Where(c => c.CarId == rental.CarID)
+                .Select(c => new CarDTO
+                {
+                    CarId = c.CarId,
+                    Make = c.Make,
+                    Model = c.Model,
+                    Year = c.Year,
+                    PricePerDay = c.PricePerDay,
+                    IsAvailable = c.IsAvailable,
+                    Description = c.Description,
+                    Color = c.Color,
+                    ImageUrl = c.ImageUrl,
+                    Mileage = c.Mileage,
+                    IsAirConditioned = c.IsAirConditioned,
+                    IsAutomatic = c.IsAutomatic,
+                    CarType = c.CarType,
+                    FuelType = c.FuelType
+                }).ToList()
+        };
+
+        return View(rentalDTO);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult EditRental(RentalDTO model)
+    {
+        if (ModelState.IsValid)
+        {
+            var rental = _rentalContext.Rentals.FirstOrDefault(r => r.RentalID == model.RentalID);
+            if (rental != null)
+            {
+                rental.RentalDate = model.RentalDate;
+                rental.ReturnDate = model.ReturnDate;
+                rental.RentalStatus = model.RentalStatus;
+                rental.PickupOffice = model.PickupOffice;
+                rental.ReturnOffice = model.ReturnOffice;
+                rental.RentalTime = model.RentalTime;
+                rental.ReturnTime = model.ReturnTime;
+
+                _rentalContext.SaveChanges();
+            }
+            return RedirectToAction("UserRentals");
+        }
+        return View(model);
+    }
+
 
 
 

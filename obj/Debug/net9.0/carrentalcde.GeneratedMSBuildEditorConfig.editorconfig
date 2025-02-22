@@ -36,6 +36,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Account/EditRental.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxFZGl0UmVudGFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [c:/Users/oguzf/Desktop/carrentalcde/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -46,6 +50,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [c:/Users/oguzf/Desktop/carrentalcde/Views/Account/UserPanel.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxVc2VyUGFuZWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Account/UserRentals.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxVc2VyUmVudGFscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [c:/Users/oguzf/Desktop/carrentalcde/Views/Admin/AddUser.cshtml]

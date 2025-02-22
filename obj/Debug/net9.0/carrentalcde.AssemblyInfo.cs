@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("carrentalcde")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+53adbb262ca495bafb9fa60cf38e7fe06bda576f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f033f82fac747e87933f0175f975795f3bd1f2e")]
 [assembly: System.Reflection.AssemblyProductAttribute("carrentalcde")]
 [assembly: System.Reflection.AssemblyTitleAttribute("carrentalcde")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

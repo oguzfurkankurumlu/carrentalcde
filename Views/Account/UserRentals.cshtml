@@ -1,0 +1,124 @@
+@model List<RentalDTO>
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiralama Geçmişi</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 220px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            color: white;
+            padding-top: 20px;
+            transition: 0.3s;
+            overflow-y: auto;
+        }
+
+        .sidebar a {
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+            font-size: 18px;
+        }
+
+        .sidebar a:hover {
+            background-color: #575d63;
+        }
+
+        .content-wrapper {
+            margin-left: 220px;
+            padding: 20px;
+            max-width: calc(100% - 220px);
+            overflow-x: auto;
+        }
+
+        @@media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .content-wrapper {
+                margin-left: 200px;
+                max-width: calc(100% - 200px);
+            }
+        }
+
+        @@media (max-width: 480px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .content-wrapper {
+                margin-left: 0;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h4 class="text-center text-white">Kullanıcı Paneli</h4>
+        <a href="@Url.Action("UserPanel", "Account")">Kişisel Bilgiler</a>
+        <a href="@Url.Action("UserRentals", "Account")">Kiralama Geçmişi</a>
+        <a href="@Url.Action("ChangePassword", "Account")">Şifre Değiştir</a>
+        <a href="@Url.Action("Logout", "Account")" class="btn btn-danger mt-3">Çıkış Yap</a>
+    </div>
+
+    <div class="container-fluid content-wrapper" style="margin-top: 30px;">
+        <h2 class="mb-4">Kiralama Geçmişi</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Araç</th>
+                    <th>Başlangıç Tarihi</th>
+                    <th>Bitiş Tarihi</th>
+                    <th>Günlük Ücret</th>
+                    <th>Toplam Ücret</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var rental in Model)
+                {
+                    <tr>
+                        <td>@rental.Cars.FirstOrDefault()?.Make @rental.Cars.FirstOrDefault()?.Model</td>
+                        <td>@rental.RentalDate.ToString("dd/MM/yyyy")</td>
+                        <td>@rental.ReturnDate.ToString("dd/MM/yyyy")</td>
+                        <td>₺@rental.Cars.FirstOrDefault()?.PricePerDay</td>
+                        <td>₺@rental.TotalAmount</td>
+                        <td>
+                            @* <a href="@Url.Action("EditRental", "Account", new { rentalId = rental.RentalID })" class="btn btn-primary btn-sm">Düzenle</a> *@
+                            <a href="@Url.Action("CancelRental", "Account", new { rentalId = rental.RentalID })" class="btn btn-danger btn-sm">İptal Et</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
