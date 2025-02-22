@@ -34,6 +34,8 @@
                                             Kiraladığınız Tarihler: <br />
                                             <strong>Başlangıç:</strong> @TempData["SelectedRentalDate"] <br />
                                             <strong>Bitiş:</strong> @TempData["SelectedReturnDate"]
+                                            <br /><br />
+                                            <a href="@Url.Action("UserRentals", "Account")" class="btn btn-info">Detaylı Kiralama Bilgisi İçin Tıklayın</a>
                                         </div>
                                     }
 
@@ -119,6 +121,9 @@
 
                                             <div class="col-12">
                                                 <button class="btn btn-light w-100 py-2">Kirala</button>
+                                            </div>
+                                            <div class="col-12">
+                                                <a href="@Url.Action("Cars", "Home")" class="btn btn-secondary w-100 py-2">Araçlar ve Fiyatlar</a>
                                             </div>
                                         </div>
                                     </form>
