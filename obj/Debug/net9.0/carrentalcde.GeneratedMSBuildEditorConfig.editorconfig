@@ -17,157 +17,165 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = carrentalcde
 build_property.RootNamespace = carrentalcde
-build_property.ProjectDir = C:\Users\oguzf\Desktop\carrentalcde\
+build_property.ProjectDir = c:\Users\oguzf\Desktop\carrentalcde\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\oguzf\Desktop\carrentalcde
+build_property.MSBuildProjectDirectory = c:\Users\oguzf\Desktop\carrentalcde
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/About/Index.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/About/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWJvdXRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Account/Login.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Account/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Account/Register.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Admin/AddUser.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Account/UserPanel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxVc2VyUGFuZWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Admin/AddUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkVXNlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Admin/CarList.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Admin/CarList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ2FyTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Admin/EditRental.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Admin/EditRental.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdFJlbnRhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Admin/EditUser.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Admin/EditUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdFVzZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Admin/Index.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Admin/PaymentList.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Admin/PaymentList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUGF5bWVudExpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Admin/Rentals.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Admin/Rentals.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUmVudGFscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Admin/ReservationList.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Admin/ReservationList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUmVzZXJ2YXRpb25MaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Admin/UserList.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Admin/UserList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlckxpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Car/Create.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Car/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Car/Details.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Car/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Car/Edit.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Car/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Car/Index.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Car/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Contact/Index.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Contact/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/CorporateCarRental/Index.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/CorporateCarRental/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29ycG9yYXRlQ2FyUmVudGFsXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Home/404.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Home/404.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVw0MDQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Home/Blog.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Home/Blog.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCbG9nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Home/Carousel.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Home/Carousel.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYXJvdXNlbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Home/Cars.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Home/Cars.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Home/Feature.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Home/Feature.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGZWF0dXJlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Home/Index.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Home/Privacy.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Home/Service.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Home/Service.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZXJ2aWNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Home/Team.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Home/Team.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUZWFtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Home/Testimonial.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Home/Testimonial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUZXN0aW1vbmlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Shared/Error.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Shared/_Footer.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Shared/_Footer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Gb290ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Shared/_Navbar.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Shared/_Navbar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9OYXZiYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Shared/_Topbar.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Shared/_Topbar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ub3BiYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Shared/_ValidationScriptsPartial.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/_ViewImports.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/_ViewStart.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oguzf/Desktop/carrentalcde/Views/Shared/_Layout.cshtml]
+[c:/Users/oguzf/Desktop/carrentalcde/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-d3au27lzxj

@@ -21,16 +21,8 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\2021_honda_civic_hatchback_angularfront.jpg",
-      "PackagePath": "staticwebassets\\img\\2021_honda_civic_hatchback_angularfront.jpg"
-    },
-    {
       "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\Thumbs.db",
       "PackagePath": "staticwebassets\\img\\Thumbs.db"
-    },
-    {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\a1sline.jpg",
-      "PackagePath": "staticwebassets\\img\\a1sline.jpg"
     },
     {
       "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\about-icon-1.png",
@@ -53,58 +45,6 @@
       "PackagePath": "staticwebassets\\img\\attachment-img.jpg"
     },
     {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\banner-1.jpg",
-      "PackagePath": "staticwebassets\\img\\banner-1.jpg"
-    },
-    {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\bg-1.jpg",
-      "PackagePath": "staticwebassets\\img\\bg-1.jpg"
-    },
-    {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\blog-1.jpg",
-      "PackagePath": "staticwebassets\\img\\blog-1.jpg"
-    },
-    {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\blog-2.jpg",
-      "PackagePath": "staticwebassets\\img\\blog-2.jpg"
-    },
-    {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\blog-3.jpg",
-      "PackagePath": "staticwebassets\\img\\blog-3.jpg"
-    },
-    {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\camry.jpg",
-      "PackagePath": "staticwebassets\\img\\camry.jpg"
-    },
-    {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\car-1.png",
-      "PackagePath": "staticwebassets\\img\\car-1.png"
-    },
-    {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\car-2.png",
-      "PackagePath": "staticwebassets\\img\\car-2.png"
-    },
-    {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\car-3.png",
-      "PackagePath": "staticwebassets\\img\\car-3.png"
-    },
-    {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\car-4.png",
-      "PackagePath": "staticwebassets\\img\\car-4.png"
-    },
-    {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\carousel-1.jpg",
-      "PackagePath": "staticwebassets\\img\\carousel-1.jpg"
-    },
-    {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\carousel-2.jpg",
-      "PackagePath": "staticwebassets\\img\\carousel-2.jpg"
-    },
-    {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\fact-bg.jpg",
-      "PackagePath": "staticwebassets\\img\\fact-bg.jpg"
-    },
-    {
       "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\features-img.png",
       "PackagePath": "staticwebassets\\img\\features-img.png"
     },
@@ -117,40 +57,16 @@
       "PackagePath": "staticwebassets\\img\\passat.jpg"
     },
     {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\ppoguz.jpg",
-      "PackagePath": "staticwebassets\\img\\ppoguz.jpg"
-    },
-    {
       "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\ss.jpg",
       "PackagePath": "staticwebassets\\img\\ss.jpg"
     },
     {
+      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\team-0.jpg",
+      "PackagePath": "staticwebassets\\img\\team-0.jpg"
+    },
+    {
       "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\team-1.jpg",
       "PackagePath": "staticwebassets\\img\\team-1.jpg"
-    },
-    {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\team-2.jpg",
-      "PackagePath": "staticwebassets\\img\\team-2.jpg"
-    },
-    {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\team-3.jpg",
-      "PackagePath": "staticwebassets\\img\\team-3.jpg"
-    },
-    {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\team-4.jpg",
-      "PackagePath": "staticwebassets\\img\\team-4.jpg"
-    },
-    {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\testimonial-1.jpg",
-      "PackagePath": "staticwebassets\\img\\testimonial-1.jpg"
-    },
-    {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\testimonial-2.jpg",
-      "PackagePath": "staticwebassets\\img\\testimonial-2.jpg"
-    },
-    {
-      "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\testimonial-3.jpg",
-      "PackagePath": "staticwebassets\\img\\testimonial-3.jpg"
     },
     {
       "Id": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\wwwroot\\img\\wallpaper.png",

@@ -72,6 +72,47 @@ public class AccountController : Controller
     }
 
 
+    public IActionResult ChangePassword()
+    {
+        ViewData["HideTopbar"] = false;
+        ViewData["HideNavbar"] = false;
+        ViewData["HideFooter"] = false;
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult ChangePassword(ChangePasswordModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            var user = _context.Users.FirstOrDefault(u => u.UserId == userId);
+            if (user == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            if (user.Password != model.OldPassword)
+            {
+                ModelState.AddModelError("", "Eski şifre yanlış.");
+                return View(model);
+            }
+
+            user.Password = model.NewPassword;
+            _context.SaveChanges();
+
+            ViewBag.Message = "Şifre başarıyla değiştirildi.";
+            return View();
+        }
+
+        return View(model);
+    }
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Login(string email, string password)
@@ -111,6 +152,39 @@ public class AccountController : Controller
     }
 
 
+    public IActionResult UserPanel()
+    {
+        ViewData["HideTopbar"] = false;
+        ViewData["HideNavbar"] = false;
+        ViewData["HideFooter"] = false;
+
+        var userFullName = HttpContext.Session.GetString("UserFullName");
+        var userId = HttpContext.Session.GetInt32("UserId");
+
+        if (userFullName == null || userId == null)
+        {
+            return RedirectToAction("Login");
+        }
+
+        var user = _context.Users.FirstOrDefault(u => u.UserId == userId);
+        if (user == null)
+        {
+            return RedirectToAction("Login");
+        }
+
+        var userModel = new UserDTO
+        {
+            UserId = user.UserId,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Email = user.Email,
+            City = user.City,
+            Role = user.Role
+            // Diğer kullanıcı bilgilerini buraya ekleyin
+        };
+
+        return View(userModel);
+    }
     public IActionResult Logout()
     {
         // Oturumu sonlandır

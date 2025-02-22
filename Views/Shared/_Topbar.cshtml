@@ -35,6 +35,7 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <li><a class="dropdown-item" href="@Url.Action("Logout", "Account")">Çıkış Yap</a></li>
+                         <li><a class="dropdown-item" href="@Url.Action("UserPanel", "Account")">Kullanıcı Paneli</a></li>
 
                         <!-- Admin linki sadece "Oğuz Furkan Kurumlu" için görünecek -->
                         @if (HttpContextAccessor.HttpContext.Session.GetString("UserFullName") == "Oğuz Furkan Kurumlu")
