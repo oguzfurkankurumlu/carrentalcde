@@ -29,7 +29,29 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+
+    <style>
+        .card-img-top {
+            width: 70%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .categories-img {
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .categories-img img {
+            width: 70%;
+            height: 70%;
+            object-fit: cover;
+        }
+    </style>
 </head>
+
+
 
 <body>
 
@@ -52,9 +74,7 @@
         <div class="container pb-5">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
                 <h1 class="display-5 text-capitalize mb-3">Araç <span class="text-primary">Kategorileri</span></h1>
-                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut amet nemo expedita
-                    asperiores commodi accusantium at cum harum, excepturi, quia tempora cupiditate! Adipisci facilis
-                    modi quisquam quia distinctio,</p>
+                <p class="mb-0"> Daha fazla bilgi için araçlarımız sayfasını ziyaret edin</p>
             </div>
             <div class="categories-carousel owl-carousel wow fadeInUp" data-wow-delay="0.1s">
                 @foreach (var car in Model)
@@ -118,7 +138,7 @@
             </div>
         </div>
     </div>
-   
+
     <!-- Back to Top -->
     <a href="#" class="btn btn-secondary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
 

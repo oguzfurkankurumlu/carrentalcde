@@ -29,6 +29,14 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        .card-img-top {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+    </style>
 </head>
 
 <body>
@@ -37,7 +45,7 @@
     <!-- Car categories Start -->
     <div class="container-fluid content-wrapper" style="margin-top: 30px; padding: 20px;">
         <h2 class="mb-4">Araçlarımız</h2>
-         <a href="@Url.Action("Index", "Home")" class="btn btn-secondary mb-4">Geri Dön</a>
+        <a href="@Url.Action("Index", "Home")" class="btn btn-secondary mb-4">Geri Dön</a>
 
         <div class="row g-4"> <!-- g-4 class ile daha iyi boşluklar eklenir -->
             @foreach (var car in Model)
