@@ -7,9 +7,6 @@ public class UserService : IUserService
         _userRepository = userRepository;
     }
 
-
-
-
     public List<UserDTO> GetAllUsers()
     {
         var users = _userRepository.GetAllUsers();
@@ -20,7 +17,8 @@ public class UserService : IUserService
             FirstName = u.FirstName,
             LastName = u.LastName,
             City = u.City,
-            Role = u.Role
+            Role = u.Role,
+            Password = u.Password // Password alanını da ekleyelim
         }).ToList();
     }
 
@@ -36,7 +34,8 @@ public class UserService : IUserService
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 City = user.City,
-                Role = user.Role
+                Role = user.Role,
+                Password = user.Password // Password alanını da ekleyelim
             };
         }
         return null;
@@ -52,7 +51,6 @@ public class UserService : IUserService
             City = userDto.City,
             Role = userDto.Role,
             Password = userDto.Password,
-
         };
 
         _userRepository.AddUser(user);
@@ -72,6 +70,7 @@ public class UserService : IUserService
             existingUser.Email = userDto.Email;
             existingUser.City = userDto.City;
             existingUser.Role = userDto.Role;
+            existingUser.Password = userDto.Password; // Password alanını da güncelleyelim
 
             _userRepository.UpdateUser(existingUser);
             Console.WriteLine("Kullanıcı güncellendi.");
@@ -86,5 +85,4 @@ public class UserService : IUserService
     {
         _userRepository.DeleteUser(id);
     }
-
 }

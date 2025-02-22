@@ -48,33 +48,60 @@ public class AdminController : Controller
         return RedirectToAction("Index");  // Kullanıcı ekledikten sonra Admin Paneli sayfasına dön
     }
 
-    // Kullanıcı Düzenleme
+    // // Kullanıcı Düzenleme
+    // public IActionResult EditUser(int id)
+    // {
+
+    //     ViewData["HideTopbar"] = false;
+    //     ViewData["HideNavbar"] = false;
+    //     ViewData["HideFooter"] = false;
+
+    //     var user = _userService.GetUserById(id);
+    //     if (user == null)
+    //         return NotFound();
+    //     return View(user);  // Kullanıcıyı düzenlemeye gönderiyoruz
+    // }
+
+    // Kullanıcı Düzenleme (GET)
     public IActionResult EditUser(int id)
     {
-
         ViewData["HideTopbar"] = false;
         ViewData["HideNavbar"] = false;
         ViewData["HideFooter"] = false;
 
         var user = _userService.GetUserById(id);
+
         if (user == null)
+        {
             return NotFound();
-        return View(user);  // Kullanıcıyı düzenlemeye gönderiyoruz
+        }
+
+        var userDto = new UserDTO
+        {
+            UserId = user.UserId,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Email = user.Email,
+            City = user.City,
+            Role = user.Role,
+            Password = user.Password // Password alanını da ekleyelim
+        };
+
+        return View(userDto);
     }
 
+    // Kullanıcı Düzenleme (POST)
     [HttpPost]
     public IActionResult EditUser(UserDTO userDto)
     {
-        ViewData["HideTopbar"] = false;
-        ViewData["HideNavbar"] = false;
-        ViewData["HideFooter"] = false;
-        if (ModelState.IsValid)
+        if (!ModelState.IsValid)
         {
-            Console.WriteLine("Gelen UserId: " + userDto.UserId); // ID'nin gelip gelmediğini kontrol et
-            _userService.UpdateUser(userDto);
-            return RedirectToAction("Index");
+            return View(userDto);
         }
-        return View(userDto);
+
+        _userService.UpdateUser(userDto);
+
+        return RedirectToAction("UserList");
     }
 
 
