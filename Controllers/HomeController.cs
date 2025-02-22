@@ -253,6 +253,15 @@ public class HomeController : Controller
     }
 
 
+    public IActionResult Cars()
+    {
+        ViewData["HideTopbar"] = false;
+        ViewData["HideNavbar"] = false;
+        ViewData["HideFooter"] = false;
+        var cars = _appDbContext.Cars.ToList(); // Veritabanındaki araçları çekiyoruz.
+        return View(cars); // Cars.cshtml sayfasına listeyi gönderiyoruz.
+    }
+
 
     public IActionResult Privacy()
     {
@@ -264,4 +273,8 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+
+
+
+
 }

@@ -14,19 +14,19 @@
                 <div class="navbar-nav mx-auto py-0 text-center ">
                     <a href="@Url.Action("Index","Home")" class="nav-item nav-link active">Ana Sayfa</a>
                     <a href="@Url.Action("Index","About")" class="nav-item nav-link">Hakkımızda</a>
-                    <a href="blog.html" class="nav-item nav-link">Blog</a>
+                    <a href="@Url.Action("Cars","Home")" class="nav-item nav-link">Araçlarımız</a>
 
-                    <div class="nav-item dropdown">
+                    @* <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Sayfalar</a>
                         <div class="dropdown-menu m-0">
                             <a href="cars.html" class="dropdown-item">Araçlarımız</a>
                             <a href="team.html" class="dropdown-item">Ekibimiz</a>
                             <a href="testimonial.html" class="dropdown-item">Yorumlar</a>
                         </div>
-                    </div>
+                    </div> *@
                     <a href="@Url.Action("Index","Contact")" class="nav-item nav-link">İletişim</a>
                 </div>
-                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Kirala</a>
+                <a href="@Url.Action("Index","Home")" class="btn btn-primary rounded-pill py-2 px-4">Kirala</a>
             </div>
     </nav>
 
