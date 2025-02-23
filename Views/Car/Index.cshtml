@@ -108,7 +108,7 @@
                                 <th>Yıl</th>
                                 <th>Fiyat</th>
                                 <th>Durum</th>
-                                <th>İşlemler</th>
+                                @* <th>İşlemler</th> *@
                             </tr>
                         </thead>
                         <tbody>
@@ -120,7 +120,7 @@
                                     <td>@car.Model</td>
                                     <td>@car.Year</td>
                                     <td>@car.PricePerDay</td>
-                                    <td>@(car.IsAvailable.HasValue && car.IsAvailable.Value ? "Mevcut" : "Dolu")</td>
+                                    @* <td>@(car.IsAvailable.HasValue && car.IsAvailable.Value ? "Mevcut" : "Dolu")</td> *@
                                     <td>
                                         <!-- Düzenle Butonu -->
                                         <a href="@Url.Action("Edit", new { id = car.CarId })"

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\oguzf\\Desktop\\carrentalcde\\carrentalcde.csproj": {}
+    "c:\\Users\\oguzf\\Desktop\\carrentalcde\\carrentalcde.csproj": {}
   },
   "projects": {
-    "C:\\Users\\oguzf\\Desktop\\carrentalcde\\carrentalcde.csproj": {
+    "c:\\Users\\oguzf\\Desktop\\carrentalcde\\carrentalcde.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\oguzf\\Desktop\\carrentalcde\\carrentalcde.csproj",
+        "projectUniqueName": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\carrentalcde.csproj",
         "projectName": "carrentalcde",
-        "projectPath": "C:\\Users\\oguzf\\Desktop\\carrentalcde\\carrentalcde.csproj",
+        "projectPath": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\carrentalcde.csproj",
         "packagesPath": "C:\\Users\\oguzf\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\oguzf\\Desktop\\carrentalcde\\obj\\",
+        "outputPath": "c:\\Users\\oguzf\\Desktop\\carrentalcde\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

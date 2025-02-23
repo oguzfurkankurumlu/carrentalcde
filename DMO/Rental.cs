@@ -14,4 +14,5 @@ public class Rental
     // Rental and Return time
     public TimeSpan RentalTime { get; set; }  // Alış saati
     public TimeSpan ReturnTime { get; set; }  // Teslim saati
+     public int? TotalAmount { get; set; }
 }

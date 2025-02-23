@@ -99,15 +99,19 @@
             <tbody>
                 @foreach (var rental in Model)
                 {
+                    var totalDays = (rental.ReturnDate - rental.RentalDate).Days;
+                    if (totalDays == 0) totalDays = 1; // Aynı gün kiralamalar için en az 1 gün sayılır
+                    var totalAmount = totalDays * rental.Cars.FirstOrDefault()?.PricePerDay;
+
                     <tr>
                         <td>@rental.Cars.FirstOrDefault()?.Make @rental.Cars.FirstOrDefault()?.Model</td>
                         <td>@rental.RentalDate.ToString("dd/MM/yyyy")</td>
                         <td>@rental.ReturnDate.ToString("dd/MM/yyyy")</td>
                         <td>₺@rental.Cars.FirstOrDefault()?.PricePerDay</td>
-                        <td>₺@rental.TotalAmount</td>
+                        <td>₺@totalAmount</td>
                         <td>
-                            @* <a href="@Url.Action("EditRental", "Account", new { rentalId = rental.RentalID })" class="btn btn-primary btn-sm">Düzenle</a> *@
                             <a href="@Url.Action("CancelRental", "Account", new { rentalId = rental.RentalID })" class="btn btn-danger btn-sm">İptal Et</a>
+                            <a href="@Url.Action("Payment", "Rentals", new { rentalId = rental.RentalID })" class="btn btn-success btn-sm">Ödeme Yap</a>
                         </td>
                     </tr>
                 }
@@ -120,5 +124,17 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".btn-success").click(function (e) {
+            e.preventDefault(); // Sayfanın yönlendirilmesini engeller
+            alert("Ödeme başarılı ile alındı!"); // Kullanıcıya mesaj gösterir
+        });
+    });
+</script>
 
 </html>

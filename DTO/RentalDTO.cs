@@ -15,5 +15,5 @@ public class RentalDTO
     public TimeSpan RentalTime { get; set; }  // Alış saati
     public TimeSpan ReturnTime { get; set; }  // Teslim saati
     public List<CarDTO> Cars { get; set; }
-    public decimal TotalAmount => (ReturnDate - RentalDate).Days * (Cars.FirstOrDefault()?.PricePerDay ?? 0);
+     public int? TotalAmount { get; set; } // Yazılabilir hale getirildi
 }

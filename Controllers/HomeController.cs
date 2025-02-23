@@ -31,37 +31,42 @@ public class HomeController : Controller
         return View(cars);
     }
 
-    // [HttpPost]
-    // public IActionResult CreateRental(int carId, string pickupOffice, string returnOffice, DateTime rentalDate, DateTime returnDate, string rentalTime, string returnTime)
-    // {
-    //     // Kullanıcı ID'yi Session'dan al
-    //     int? sessionUserId = HttpContext.Session.GetInt32("UserId");
+    [HttpGet]
+    public IActionResult SearchCars()
+    {
+        return View();
+    }
 
-    //     if (sessionUserId == null || sessionUserId == 0)
-    //     {
-    //         TempData["Error"] = "Araç kiralamak için giriş yapmalısınız.";
-    //         return RedirectToAction("Login"); // Kullanıcı giriş yapmamışsa login sayfasına yönlendir
-    //     }
+    [HttpPost]
+    public IActionResult SearchCars(SearchCarsViewModel model)
+    {
+        int? sessionUserId = HttpContext.Session.GetInt32("UserId");
 
-    //     var rental = new Rental
-    //     {
-    //         CarID = carId,
-    //         PickupOffice = pickupOffice,
-    //         ReturnOffice = returnOffice,
-    //         RentalDate = rentalDate.Date, // Sadece tarihi al
-    //         ReturnDate = returnDate.Date, // Sadece tarihi al
-    //                                       // Saat bilgisini DateTime olarak saklamak için MinValue ile birleştiriyoruz
-    //         RentalTime = DateTime.MinValue.Add(TimeSpan.Parse(rentalTime)),
-    //         ReturnTime = DateTime.MinValue.Add(TimeSpan.Parse(returnTime)),
-    //         RentalStatus = "Aktif",
-    //         UserID = sessionUserId.Value // Session'dan gelen UserID'yi ata
-    //     };
+        if (sessionUserId == null || sessionUserId == 0)
+        {
+            TempData["Error"] = "Araç kiralamak için giriş yapmalısınız.";
+            return RedirectToAction("Login", "Account");
+        }
 
-    //     _rentalDbContext.Rentals.Add(rental);
-    //     _rentalDbContext.SaveChanges();
+        var rentedCarIds = _rentalDbContext.Rentals
+            .Where(r => (model.RentalDate >= r.RentalDate && model.RentalDate <= r.ReturnDate) ||
+                        (model.ReturnDate >= r.RentalDate && model.ReturnDate <= r.ReturnDate))
+            .Select(r => r.CarID)
+            .ToList();
 
-    //     return RedirectToAction("Index");
-    // }
+        var availableCars = _appDbContext.Cars
+            .Where(c => !rentedCarIds.Contains(c.CarId))
+            .ToList();
+
+        ViewBag.RentalDate = model.RentalDate;
+        ViewBag.ReturnDate = model.ReturnDate;
+        ViewBag.PickupOffice = model.PickupOffice;
+        ViewBag.ReturnOffice = model.ReturnOffice;
+        ViewBag.RentalTime = model.RentalTime;
+        ViewBag.ReturnTime = model.ReturnTime;
+
+        return View("AvailableCars", availableCars);
+    }
 
     [HttpPost]
     public IActionResult CreateRental(int carId, string pickupOffice, string returnOffice, DateTime rentalDate, DateTime returnDate, string rentalTime, string returnTime)
@@ -71,48 +76,35 @@ public class HomeController : Controller
         if (sessionUserId == null || sessionUserId == 0)
         {
             TempData["Error"] = "Araç kiralamak için giriş yapmalısınız.";
-            return RedirectToAction("Login");
+            return RedirectToAction("Login", "Account");
         }
 
         DateTime rentalDateTime = rentalDate.Date.Add(TimeSpan.Parse(rentalTime));
         DateTime returnDateTime = returnDate.Date.Add(TimeSpan.Parse(returnTime));
-
-        var existingRentals = _rentalDbContext.Rentals
-            .Where(r => r.CarID == carId)
-            .ToList();
-
-        bool isCarAvailable = !existingRentals.Any(r =>
-            !(r.ReturnDate.Add(r.ReturnTime) <= rentalDateTime || r.RentalDate.Add(r.RentalTime) >= returnDateTime)
-        );
-
-        if (!isCarAvailable)
-        {
-            TempData["ErrorMessage"] = "Seçtiğiniz tarihlerde araç doludur.";
-            TempData["SelectedRentalDate"] = rentalDate.ToString("yyyy-MM-dd") + " " + rentalTime;
-            TempData["SelectedReturnDate"] = returnDate.ToString("yyyy-MM-dd") + " " + returnTime;
-            return RedirectToAction("Index");
-        }
+        var car = _appDbContext.Cars.Find(carId);
+        var totalDays = (returnDateTime - rentalDateTime).Days;
+        if (totalDays == 0) totalDays = 1; // Aynı gün kiralamalar için en az 1 gün sayılır
+        var totalAmount = totalDays * car.PricePerDay;
 
         var rental = new Rental
         {
             CarID = carId,
+            UserID = sessionUserId.Value,
             PickupOffice = pickupOffice,
             ReturnOffice = returnOffice,
-            RentalDate = rentalDate.Date,
-            ReturnDate = returnDate.Date,
+            RentalDate = rentalDateTime,
+            ReturnDate = returnDateTime,
             RentalTime = TimeSpan.Parse(rentalTime),
             ReturnTime = TimeSpan.Parse(returnTime),
             RentalStatus = "Aktif",
-            UserID = sessionUserId.Value
+            TotalAmount = totalAmount,
         };
 
         _rentalDbContext.Rentals.Add(rental);
         _rentalDbContext.SaveChanges();
 
-        TempData["SuccessMessage"] = "Araç başarıyla kiralandı!";
-        TempData["SelectedRentalDate"] = rentalDate.ToString("yyyy-MM-dd") + " " + rentalTime;
-        TempData["SelectedReturnDate"] = returnDate.ToString("yyyy-MM-dd") + " " + returnTime;
-        return RedirectToAction("Index");
+        TempData["SuccessMessage"] = "Kiralama işleminiz başarılı.";
+        return RedirectToAction("UserRentals", "Account");
     }
 
 
@@ -121,6 +113,7 @@ public class HomeController : Controller
     // [HttpPost]
     // public IActionResult CreateRental(int carId, string pickupOffice, string returnOffice, DateTime rentalDate, DateTime returnDate, string rentalTime, string returnTime)
     // {
+
     //     int? sessionUserId = HttpContext.Session.GetInt32("UserId");
 
     //     if (sessionUserId == null || sessionUserId == 0)
@@ -132,19 +125,19 @@ public class HomeController : Controller
     //     DateTime rentalDateTime = rentalDate.Date.Add(TimeSpan.Parse(rentalTime));
     //     DateTime returnDateTime = returnDate.Date.Add(TimeSpan.Parse(returnTime));
 
-    //     // **Veritabanından RAM'e çek**
     //     var existingRentals = _rentalDbContext.Rentals
     //         .Where(r => r.CarID == carId)
-    //         .ToList(); // **Tüm verileri çekiyoruz**
+    //         .ToList();
 
-    //     // **Çakışma kontrolü**
     //     bool isCarAvailable = !existingRentals.Any(r =>
     //         !(r.ReturnDate.Add(r.ReturnTime) <= rentalDateTime || r.RentalDate.Add(r.RentalTime) >= returnDateTime)
     //     );
 
     //     if (!isCarAvailable)
     //     {
-    //         TempData["Error"] = "Seçtiğiniz tarih ve saatlerde bu araç zaten kiralanmış. Lütfen farklı bir zaman seçin.";
+    //         TempData["ErrorMessage"] = "Seçtiğiniz tarihlerde araç doludur.";
+    //         TempData["SelectedRentalDate"] = rentalDate.ToString("yyyy-MM-dd") + " " + rentalTime;
+    //         TempData["SelectedReturnDate"] = returnDate.ToString("yyyy-MM-dd") + " " + returnTime;
     //         return RedirectToAction("Index");
     //     }
 
@@ -155,7 +148,7 @@ public class HomeController : Controller
     //         ReturnOffice = returnOffice,
     //         RentalDate = rentalDate.Date,
     //         ReturnDate = returnDate.Date,
-    //         RentalTime = TimeSpan.Parse(rentalTime),  // **TimeSpan olarak dönüştürdük**
+    //         RentalTime = TimeSpan.Parse(rentalTime),
     //         ReturnTime = TimeSpan.Parse(returnTime),
     //         RentalStatus = "Aktif",
     //         UserID = sessionUserId.Value
@@ -164,82 +157,21 @@ public class HomeController : Controller
     //     _rentalDbContext.Rentals.Add(rental);
     //     _rentalDbContext.SaveChanges();
 
-    //     TempData["Success"] = "Araç başarıyla kiralandı!";
+    //     TempData["SuccessMessage"] = "Araç başarıyla kiralandı!";
+    //     TempData["SelectedRentalDate"] = rentalDate.ToString("yyyy-MM-dd") + " " + rentalTime;
+    //     TempData["SelectedReturnDate"] = returnDate.ToString("yyyy-MM-dd") + " " + returnTime;
     //     return RedirectToAction("Index");
     // }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-    // [HttpGet]
-    // public IActionResult GetAvailableCars(DateTime startDate, DateTime endDate)
-    // {
-    //     // 1. Belirtilen tarihlerde kiralanmış araçları bul
-    //     var rentedCarIds = _rentalDbContext.Rentals
-    //         .Where(r => r.RentalDate <= endDate && (r.ReturnDate == null || r.ReturnDate >= startDate))
-    //         .Select(r => r.CarID)
-    //         .Distinct()
-    //         .ToList();
-
-    //     // 2. Kiralanmamış araçları getir
-    //     var availableCars = _appDbContext.Cars
-    //         .Where(c => !rentedCarIds.Contains(c.CarId.Value) && c.IsAvailable == true)
-    //         .ToList();
-
-    //     return View(availableCars);
-    // }
-
-    // [HttpGet]
-    // public JsonResult GetAvailableCars(DateTime startDate, DateTime endDate)
-    // {
-    //     var rentedCarIds = _rentalDbContext.Rentals
-    //         .Where(r => r.RentalDate <= endDate && (r.ReturnDate == null || r.ReturnDate >= startDate))
-    //         .Select(r => r.CarID)
-    //         .Distinct()
-    //         .ToList();
-
-    //     var availableCars = _appDbContext.Cars
-    //         .Where(c => !rentedCarIds.Contains(c.CarId.Value) && c.IsAvailable == true)
-    //         .Select(c => new
-    //         {
-    //             CarId = c.CarId,
-    //             Name = c.Make + " " + c.Model
-    //         })
-    //         .ToList();
-
-    //     return Json(availableCars);
-    // }
-
-
-
-    // public List<Car> GetAvailableCars(DateTime rentalDate, DateTime returnDate)
-    // {
-    //     var rentedCars = _rentalDbContext.Rentals
-    //         .Where(r => !(r.ReturnDate < rentalDate || r.RentalDate > returnDate))
-    //         .Select(r => r.CarID)
-    //         .ToList();
-
-    //     var availableCars = _appDbContext.Cars
-    //         .Where(c => !rentedCars.Contains(c.CarId))
-    //         .ToList();
-
-    //     return availableCars;
-    // }
-
-
     [HttpGet]
     public IActionResult GetAvailableCars(DateTime rentalDate, DateTime returnDate)
     {
+        ViewData["HideTopbar"] = false;
+        ViewData["HideNavbar"] = false;
+        ViewData["HideFooter"] = false;
         var rentedCars = _rentalDbContext.Rentals
             .Where(r => !(r.ReturnDate < rentalDate || r.RentalDate > returnDate))
             .Select(r => (int?)r.CarID) // int? olarak aldık
