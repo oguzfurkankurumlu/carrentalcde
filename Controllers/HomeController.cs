@@ -65,6 +65,12 @@ public class HomeController : Controller
         ViewBag.RentalTime = model.RentalTime;
         ViewBag.ReturnTime = model.ReturnTime;
 
+        ViewData["HideTopbar"] = false;
+        ViewData["HideNavbar"] = false;
+        ViewData["HideFooter"] = false;
+
+        
+
         return View("AvailableCars", availableCars);
     }
 
